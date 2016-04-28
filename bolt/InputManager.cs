@@ -28,7 +28,7 @@ namespace bolt
 					{
 						Dialog dialog = new Dialog (bolt, "Are you sure you to overrite " + bolt.codeFile.FileName + "?");
 						dialog.Chosen += (bool result) => {
-							if (result) bolt.codeFile.Save();
+							if (result) bolt.Save();
 						};
 						bolt.AddComponent(dialog);
 					}
@@ -36,7 +36,9 @@ namespace bolt
 					{
 						Dialog dialog = new Dialog (bolt, "Are you sure you to overrite " + bolt.codeFile.FileName + " and exit?");
 						dialog.Chosen += (bool result) => {
-							if (result) bolt.codeFile.Save();
+							if (result) bolt.Save();
+							bolt.Exiting = true;
+							Environment.Exit(0);
 						};
 						bolt.AddComponent(dialog);
 					}

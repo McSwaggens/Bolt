@@ -101,6 +101,11 @@ namespace bolt
 			//Redraw the screen after the component is removed
 			Refresh ();
 		}
+
+		public void Save()
+		{
+			
+		}
 	}
 }
 

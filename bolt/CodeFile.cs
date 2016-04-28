@@ -19,14 +19,6 @@ namespace bolt
 			this.FileType = split [split.Length-1];
 			code = System.IO.File.ReadAllText (directory.Location + "/" + fileName);
 		}
-
-		public void Save()
-		{
-			if (!Saved)
-			{
-				
-			}
-		}
 	}
 }
 
