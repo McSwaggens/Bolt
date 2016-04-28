@@ -6,6 +6,7 @@ namespace bolt
 	{
 		private static Bolt bolt;
 		private static readonly bool ENABLED = true; //TURN TO FALSE FOR LOGGER.cs OUTPUT
+		public static bool SHOW_CURSOR = false;
 
 		public static void Initialize(Bolt bolt)
 		{
@@ -39,6 +40,13 @@ namespace bolt
 			Console.Write (str);
 		}
 
+		public static void ClearLine(int line)
+		{
+			line += bolt.CurrentlyUpdating.location.Y;
+			string wiper = Util.StringSpacer (bolt.CurrentlyUpdating.size.Width);
+			DrawString(wiper, new Location(0, line-1));
+		}
+
 		public static void DrawString(string str, Location location, ConsoleColor ForeColor, ConsoleColor BackColor)
 		{
 			location.X += bolt.CurrentlyUpdating.location.X;
@@ -49,6 +57,19 @@ namespace bolt
 
 			Console.SetCursorPosition (location.X, location.Y);
 			Console.Write (str);
+			Console.ResetColor();
+		}
+
+		public static void SetCursorPos(Location loc)
+		{
+			//LAZY CODE
+			//TODO FIX LAZY CODE
+
+			Location location = new Location (loc.X, loc.Y);
+
+			location.X += bolt.CurrentlyUpdating.location.X;
+			location.Y += bolt.CurrentlyUpdating.location.Y;
+			Console.SetCursorPosition (location.X, location.Y);
 		}
 
 		public static void FillRectangle(Location start, Location end, ConsoleColor color)

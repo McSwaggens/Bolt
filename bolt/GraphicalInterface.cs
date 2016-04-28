@@ -70,6 +70,11 @@ namespace bolt
 			bolt.RemoveComponent (this);
 			bolt.Refresh ();
 		}
+
+		public void SelfUpdate() {
+			bolt.CurrentlyUpdating = this;
+			Update();
+		}
 	}
 }
 

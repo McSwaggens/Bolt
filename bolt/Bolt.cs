@@ -10,6 +10,7 @@ namespace bolt
 		public GraphicalInterface CurrentlyUpdating = null;
 		public InputManager inputManager;
 		public bool Exiting = false;
+		public Editor editor;
 
 		public SubDirectory RootDirectory;
 		//Code file only for now
@@ -27,7 +28,6 @@ namespace bolt
 		{
 
 			Console.Clear ();
-
 
 			GUI.Initialize (this);
 
@@ -52,8 +52,13 @@ namespace bolt
 
 			//Console Initialization
 			//Undone when CTRL+C is pressed in InputManager.cs
-			Console.CursorVisible = false;
+			Console.CursorVisible = true;
 			Console.TreatControlCAsInput = true;
+
+			//Initialize Text/Code Editor
+			editor = new Editor(this, codeFile);
+			editor.Format (new Location (0, 1), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 1));
+			AddComponent (editor);
 
 			//Draw components to screen
 			Refresh ();
