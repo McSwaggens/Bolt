@@ -11,6 +11,7 @@ namespace bolt
 		public InputManager inputManager;
 		public bool Exiting = false;
 		public Editor editor;
+		public GraphicalInterface FocusedComponent;
 
 		public SubDirectory RootDirectory;
 		//Code file only for now
@@ -58,6 +59,7 @@ namespace bolt
 			//Initialize Text/Code Editor
 			editor = new Editor(this, codeFile);
 			editor.Format (new Location (0, 1), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 1));
+			editor.Focus ();
 			AddComponent (editor);
 
 			//Draw components to screen
@@ -100,6 +102,12 @@ namespace bolt
 			this.Components.Remove (component);
 			//Redraw the screen after the component is removed
 			Refresh ();
+		}
+
+		public void RemoveFocus(GraphicalInterface component)
+		{
+			FocusedComponent = Components [Components.Count-1];
+			FocusedComponent.Focus ();
 		}
 
 		public void Save()

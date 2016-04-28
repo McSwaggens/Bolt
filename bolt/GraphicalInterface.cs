@@ -22,13 +22,18 @@ namespace bolt
 
 		public void Focus()
 		{
+			if (Focused)
+				return;
 			Focused = true;
 			OnFocused ();
 		}
 
 		public void Unfocus()
 		{
+			if (!Focused)
+				return;
 			Focused = false;
+			bolt.RemoveFocus (this);
 			OnUnfocused ();
 		}
 
@@ -68,7 +73,13 @@ namespace bolt
 		public void Dispose()
 		{
 			bolt.RemoveComponent (this);
+			OnDisposed ();
+			Unfocus ();
 			bolt.Refresh ();
+		}
+
+		public virtual void OnDisposed()
+		{
 		}
 
 		public void SelfUpdate() {

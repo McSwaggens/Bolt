@@ -19,6 +19,8 @@ namespace bolt
 			this.foreColor = foreColor;
 
 			Format (new Location (0, GUI.ScreenHeight / 3), new Size (GUI.ScreenWidth, GUI.ScreenHeight / 3));
+
+			Focus ();
 		}
 
 		public override void Update ()
@@ -33,6 +35,7 @@ namespace bolt
 
 			GUI.DrawString(" N - No ", new Location((size.Width / 2) + Seperation, size.Height / 2), ConsoleColor.White, ConsoleColor.Black);//8
 		}
+
 
 		/*
 		 * Check for;
@@ -49,11 +52,11 @@ namespace bolt
 			if (keyInfo.Key == ConsoleKey.Y) {
 				Chosen (true);
 				Dispose ();
-			}
-			else if (keyInfo.Key == ConsoleKey.N) {
+			} else if (keyInfo.Key == ConsoleKey.N) {
 				Chosen (false);
 				Dispose ();
-			}
+			} else
+				SelfUpdate ();
 		}
 	}
 }

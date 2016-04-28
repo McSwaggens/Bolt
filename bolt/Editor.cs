@@ -37,6 +37,10 @@ namespace bolt
 
 		public void KeyPressed(ConsoleKeyInfo keyInfo)
 		{
+			if (!Focused)
+			{
+				return;
+			}
 			if (keyInfo.Key == ConsoleKey.UpArrow) {
 				if (cursor.Y > 0) {
 					cursor.Y--;
