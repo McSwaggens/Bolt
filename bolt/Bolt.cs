@@ -1,33 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
 namespace bolt
 {
 	public class Bolt
 	{
-		private string FileLocation;
-		private List<GraphicalInterface> Components = new List<GraphicalInterface>();
+		public List<GraphicalInterface> Components = new List<GraphicalInterface>();
 		public GraphicalInterface CurrentlyUpdating = null;
 		public InputManager inputManager;
 		public bool Exiting = false;
 
+		public SubDirectory RootDirectory;
+		//Code file only for now
+		public CodeFile codeFile;
+		public bool isRepository;
+
+		/*
+		 * Controls;
+		 *  Exit: CTRL+C
+		 * 	Save: CTRL+O (O for out)
+		 * 	Exit and Save (CTRL+X)
+		 */
+
 		public Bolt (string fileLocation)
 		{
+
 			Console.Clear ();
-			Console.CursorVisible = false;
-			Console.TreatControlCAsInput = true;
+
 
 			GUI.Initialize (this);
 
-			StatusBar bar = new StatusBar (fileLocation);
+			StatusBar bar = new StatusBar (this, fileLocation);
 			bar.Format(new Location(0, 0), new Size(GUI.ScreenWidth, 1));
 
 			Components.Add (bar);
-			
-			FileLocation = fileLocation;
+
+			isRepository = Directory.Exists (fileLocation) && File.Exists(fileLocation);
+
+			if (isRepository) {
+				//Editing a directory (Repository)
+				RootDirectory = new SubDirectory (fileLocation);
+				RootDirectory.ScanDirectory ();
+			} else {
+				//Editing a single file
+				codeFile = new CodeFile (new SubDirectory (fileLocation), Path.GetFileName(fileLocation));
+			}
 
 			inputManager = new InputManager (this);
 			inputManager.StartListener ();
+
+			//Console Initialization
+			//Undone when CTRL+C is pressed in InputManager.cs
+			Console.CursorVisible = false;
+			Console.TreatControlCAsInput = true;
 
 			//Draw components to screen
 			Refresh ();
@@ -40,6 +66,8 @@ namespace bolt
 
 		public void Refresh()
 		{
+			Console.ResetColor ();
+			Console.Clear ();
 			foreach (GraphicalInterface component in Components)
 			{
 				CurrentlyUpdating = component;
@@ -53,6 +81,20 @@ namespace bolt
 			CurrentlyUpdating = component;
 			component.Update ();
 			CurrentlyUpdating = null;
+		}
+
+		public void AddComponent(GraphicalInterface component)
+		{
+			this.Components.Add (component);
+			//Redraw the screen after the new component is added
+			Refresh ();
+		}
+
+		public void RemoveComponent(GraphicalInterface component)
+		{
+			this.Components.Remove (component);
+			//Redraw the screen after the component is removed
+			Refresh ();
 		}
 	}
 }

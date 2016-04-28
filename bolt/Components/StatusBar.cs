@@ -6,16 +6,19 @@ namespace bolt
 	{
 		public string FileLocation;
 
-		public StatusBar (string fileLocation)
+		public StatusBar (Bolt bolt, string fileLocation) : base (bolt)
 		{
 			FileLocation = fileLocation;
+
 		}
 
 		public override void Update ()
 		{
 			GUI.FillRectangle(new Location(0, 0), new Location(GUI.ScreenWidth, 1), ConsoleColor.White);
 			GUI.DrawString ("  Bolt v1.0 Alpha", new Location(0, 0), ConsoleColor.Black, ConsoleColor.White);
-			GUI.DrawString (FileLocation, new Location(GUI.ScreenWidth / 3, 0), ConsoleColor.Black, ConsoleColor.White);
+			GUI.DrawString (FileLocation, new Location((GUI.ScreenWidth / 2) - (FileLocation.Length / 2), 0), ConsoleColor.Black, ConsoleColor.White);
+			string strEndDraw = this.bolt.codeFile.Changed ? "Modified" : "Saved";
+			GUI.DrawString (strEndDraw, new Location (size.Width - strEndDraw.Length - 1, 0), ConsoleColor.Black, ConsoleColor.White);
 		}
 
 		public override void OnUnfocused ()

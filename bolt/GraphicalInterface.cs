@@ -9,6 +9,13 @@ namespace bolt
 		public Size size;
 		public bool Focused = false;
 		public bool Shown = true;
+		public Bolt bolt;
+
+		public GraphicalInterface (Bolt bolt)
+		{
+			this.bolt = bolt;
+		}
+
 		public virtual void Update()
 		{
 		}
@@ -56,6 +63,12 @@ namespace bolt
 
 		public virtual void OnMoved()
 		{
+		}
+
+		public void Dispose()
+		{
+			bolt.RemoveComponent (this);
+			bolt.Refresh ();
 		}
 	}
 }

@@ -47,6 +47,11 @@
     <Compile Include="GUI.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Dialog.cs" />
+    <Compile Include="SubDirectory.cs" />
+    <Compile Include="CodeFile.cs" />
+    <Compile Include="InputListener.cs" />
+    <Compile Include="Editor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

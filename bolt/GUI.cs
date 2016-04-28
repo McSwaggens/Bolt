@@ -5,6 +5,7 @@ namespace bolt
 	public class GUI
 	{
 		private static Bolt bolt;
+		private static readonly bool ENABLED = true; //TURN TO FALSE FOR LOGGER.cs OUTPUT
 
 		public static void Initialize(Bolt bolt)
 		{
@@ -29,6 +30,8 @@ namespace bolt
 
 		public static void DrawString(string str, Location location)
 		{
+			if (!ENABLED)
+				return;
 			location.X += bolt.CurrentlyUpdating.location.X;
 			location.Y += bolt.CurrentlyUpdating.location.Y;
 
@@ -50,6 +53,8 @@ namespace bolt
 
 		public static void FillRectangle(Location start, Location end, ConsoleColor color)
 		{
+			if (!ENABLED)
+				return;
 			start.X += bolt.CurrentlyUpdating.location.X;
 			start.Y += bolt.CurrentlyUpdating.location.Y;
 
