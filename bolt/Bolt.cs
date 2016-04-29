@@ -13,6 +13,7 @@ namespace bolt
 		public Editor editor;
 		public GraphicalInterface FocusedComponent;
 		public StatusBar statusBar;
+		public ControlsPanel controlsPanel;
 		public static Bolt TEMP_INSTANCE;
 
 		public SubDirectory RootDirectory;
@@ -59,9 +60,14 @@ namespace bolt
 			Console.CursorVisible = true;
 			Console.TreatControlCAsInput = true;
 
+			//Initialize Text Ballet (Bottom of screen)
+			controlsPanel = new ControlsPanel(this);
+			controlsPanel.Format (new Location (0, GUI.ScreenHeight), new Size (GUI.ScreenWidth, 1));
+			AddComponent (controlsPanel);
+
 			//Initialize Text/Code Editor
 			editor = new Editor(this, codeFile);
-			editor.Format (new Location (0, 1), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 1));
+			editor.Format (new Location (0, 1), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 2));
 			editor.Focus ();
 			AddComponent (editor);
 
