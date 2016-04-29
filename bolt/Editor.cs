@@ -65,7 +65,7 @@ namespace bolt
 				if (cursor.X != 0) {
 					cursor.X--;
 					XWant = cursor.X;
-				} else {
+				} else if (cursor.Y > 0) {
 					cursor.Y--;
 					cursor.X = lines [cursor.Y].Length;
 				}
@@ -74,7 +74,7 @@ namespace bolt
 					cursor.X++;
 					XWant = cursor.X;
 				}
-				else {
+				else if (cursor.Y < lines.Count-1) {
 					cursor.Y++;
 					cursor.X = 0;
 				}
