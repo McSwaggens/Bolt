@@ -57,6 +57,7 @@ namespace bolt
 				Dispose ();
 			} else
 				SelfUpdate ();
+			bolt.inputManager.CancelKeySpread = true;
 		}
 	}
 }

@@ -25,6 +25,7 @@ namespace bolt
 			if (Focused)
 				return;
 			Focused = true;
+			bolt.FocusedComponent = this;
 			OnFocused ();
 		}
 

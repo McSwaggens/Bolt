@@ -6,6 +6,7 @@ namespace bolt
 	{
 		private Bolt bolt;
 		private Thread listenerThread;
+		public bool CancelKeySpread = false;
 		public InputManager (Bolt bolt)
 		{
 			this.bolt = bolt;
@@ -46,11 +47,8 @@ namespace bolt
 				}
 				else
 				{
-					for (int i = 0; i < bolt.Components.Count; i++)
-					{
-						GraphicalInterface component = bolt.Components[i];
-						if (component is InputListener) ((InputListener)component).KeyPressed(keyInfo);
-					}
+					if (bolt.FocusedComponent != null && bolt.FocusedComponent is InputListener)
+						((InputListener)bolt.FocusedComponent).KeyPressed (keyInfo);
 				}
 			}
 		}
