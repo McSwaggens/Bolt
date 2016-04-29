@@ -88,7 +88,7 @@ namespace bolt
 					codeFile.Changed = true;
 					SelfUpdate ();
 					bolt.statusBar.SelfUpdate ();
-				} else if (cursor.X == 0)
+				} else if (cursor.X == 0 && cursor.Y != 0)
 				{
 					int width = lines [cursor.Y - 1].Length;
 					lines [cursor.Y - 1] += lines [cursor.Y];
