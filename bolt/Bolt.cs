@@ -112,7 +112,7 @@ namespace bolt
 
 		public void Save()
 		{
-			
+			editor.codeFile.Save (editor.GetCode ());
 		}
 	}
 }
