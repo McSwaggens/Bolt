@@ -27,7 +27,8 @@ namespace bolt
 			{
 				//TODO Syntax Highlighting
 				GUI.ClearLine(i);
-				GUI.DrawString((Settings.SHOW_LINE_NUMBERS ? (i + ":\t") : "") + lines[i], new Location(0, i));
+				bool showLineNumbers = (bool)Settings.settings ["SHOW_LINE_NUMBERS"];
+				GUI.DrawString((showLineNumbers ? (i + ":\t") : "") + lines[i], new Location(0, i));
 			}
 			for (; i < size.Height; i++)
 				GUI.ClearLine(i);

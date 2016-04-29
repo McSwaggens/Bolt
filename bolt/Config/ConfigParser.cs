@@ -10,6 +10,7 @@ namespace bolt
 		 * DUMB CODE
 		 * BEWARE
 		 */
+
 		public static Dictionary<string, object> Parse(Token[] tokens, Dictionary<string, object> possibleSettings) {
 			
 			Token[][] TokenLines = SeperateLines (tokens);
@@ -17,12 +18,14 @@ namespace bolt
 			foreach (Token[] tokenLine in TokenLines) {
 				if (tokenLine [0] is Word && tokenLine [1] is Operator && ((Operator)tokenLine [1]).type == OperatorType.Equals && tokenLine [2] is ValueTokenType) {
 					//(SETTING) = (VALUE)
-					if (possibleSettings [((Word)tokenLine [0]).raw.ToString()] != null)
-						possibleSettings [((Word)tokenLine [0]).raw.ToString()] = tokenLine [2].raw;
+					if (possibleSettings [((Word)tokenLine [0]).raw.ToString ()] != null)
+						possibleSettings [((Word)tokenLine [0]).raw.ToString ()] = tokenLine [2].raw;
+					else {
+						Logger.LogError ("Unknown setting: \"" + ((Word)tokenLine [0]).raw.ToString () + "\" in config \"~/.bolt\"");
+						Settings.LOAD_FAILED = true;
+					}
 				}
 			}
-			PrintSettings (possibleSettings);
-
 			return possibleSettings;
 		}
 

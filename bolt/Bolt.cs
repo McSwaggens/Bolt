@@ -31,8 +31,11 @@ namespace bolt
 		public Bolt (string fileLocation)
 		{
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
-
 			Settings.LoadSettings ("/home/daniel/.bolt");
+			if (Settings.LOAD_FAILED) {
+				Logger.LogError ("Failed to load settings... Exiting.");
+				return;
+			}
 
 			TEMP_INSTANCE = this;
 

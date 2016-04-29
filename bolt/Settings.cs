@@ -5,8 +5,7 @@ namespace bolt
 {
 	public class Settings
 	{
-		//TODO: Load settings from json config file in ~/.bolt
-		public static bool SHOW_LINE_NUMBERS = true;
+		public static bool LOAD_FAILED = false;
 
 		public static Dictionary<string, object> settings = new Dictionary<string, object> () {
 			{ "SHOW_LINE_NUMBERS", true },
@@ -16,8 +15,12 @@ namespace bolt
 		};
 
 		public static void LoadSettings (string configLocation) {
-			Token[] tokens = ConfigLexer.GenerateTokens (File.ReadAllText (configLocation));
-			settings = ConfigParser.Parse (tokens, settings);
+			try {
+				Token[] tokens = ConfigLexer.GenerateTokens (File.ReadAllText (configLocation));
+				settings = ConfigParser.Parse (tokens, settings);
+			}catch (Exception e) {
+				LOAD_FAILED = true;
+			}
 		}
 	}
 }
