@@ -66,6 +66,7 @@
     <Compile Include="Config\EnumKeyword.cs" />
     <Compile Include="Config\Keyword.cs" />
     <Compile Include="Config\ValueTokenType.cs" />
+    <Compile Include="Config\Boolean.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

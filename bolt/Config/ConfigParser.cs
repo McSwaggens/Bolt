@@ -16,11 +16,20 @@ namespace bolt
 
 			foreach (Token[] tokenLine in TokenLines) {
 				if (tokenLine [0] is Word && tokenLine [1] is Operator && ((Operator)tokenLine [1]).type == OperatorType.Equals && tokenLine [2] is ValueTokenType) {
-					
+					//(SETTING) = (VALUE)
+					if (possibleSettings [((Word)tokenLine [0]).raw.ToString()] != null)
+						possibleSettings [((Word)tokenLine [0]).raw.ToString()] = tokenLine [2].raw;
 				}
 			}
+			PrintSettings (possibleSettings);
 
-			return null;
+			return possibleSettings;
+		}
+
+		private static void PrintSettings(Dictionary<string, object> settings) {
+			foreach (KeyValuePair<string, object> pair in settings) {
+				Console.WriteLine (pair.Key + "\t" + pair.Value);
+			}
 		}
 
 		private static Token[][] SeperateLines(Token[] tokens) {
