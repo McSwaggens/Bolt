@@ -32,7 +32,9 @@ namespace bolt
 		public Bolt (string[] args)
 		{
 			string fileLocation = args[0];
-			
+			if (!fileLocation.Contains("/")) {
+				fileLocation = Directory.GetCurrentDirectory() + "/" + fileLocation;
+			}
 			//Load parameters from command line arguments
 			LoadParams(args);
 			
@@ -42,6 +44,11 @@ namespace bolt
 			{
 				Logger.LogError($"Unknown or missing file \"{fileLocation}\",\nplease make sure the first parameter is the file you wish to edit.");
 			}
+			
+			//Uncomment for file input information, aswell as; working directory.
+			///Console.WriteLine("DIR: " + Directory.GetCurrentDirectory());
+			///Console.WriteLine(fileLocation);
+			///return;
 			
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
 			Settings.LoadSettings ("/home/daniel/.bolt");
