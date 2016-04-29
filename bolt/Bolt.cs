@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.IO;
+using static bolt.Clas;
 namespace bolt
 {
 	public class Bolt
@@ -28,8 +29,17 @@ namespace bolt
 		 * 	Exit and Save (CTRL+X)
 		 */
 
-		public Bolt (string fileLocation)
+		public Bolt (string[] args)
 		{
+			string fileLocation = args[0];
+			if (!File.Exists(fileLocation))
+			{
+				Logger.LogError($"Unknown or missing file \"{fileLocation}\",\nplease make sure the first parameter is the file you wish to edit.");
+			}
+			
+			//Load parameters from command line arguments
+			LoadParams(args);
+			
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
 			Settings.LoadSettings ("/home/daniel/.bolt");
 			if (Settings.LOAD_FAILED) {
