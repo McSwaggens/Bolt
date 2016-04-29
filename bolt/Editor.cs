@@ -5,7 +5,7 @@ namespace bolt
 {
 	public class Editor : GraphicalInterface, InputListener
 	{
-		public int TAB_SPACES = 8;
+		public static readonly int TAB_SPACES = 8;
 		public int Scroll = 0;
 		public Location cursor = new Location(0, 0);
 		public List<string> lines;
@@ -35,7 +35,6 @@ namespace bolt
 			cursor.X += TAB_SPACES;
 			GUI.SetCursorPos (cursor);
 			cursor.X -= TAB_SPACES;
-
 		}
 
 		public void KeyPressed(ConsoleKeyInfo keyInfo)

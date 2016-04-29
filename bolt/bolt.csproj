@@ -53,6 +53,7 @@
     <Compile Include="InputListener.cs" />
     <Compile Include="Editor.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ControlsPanel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

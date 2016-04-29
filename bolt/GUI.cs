@@ -6,7 +6,6 @@ namespace bolt
 	{
 		private static Bolt bolt;
 		private static readonly bool ENABLED = true; //TURN TO FALSE FOR LOGGER.cs OUTPUT
-		public static bool SHOW_CURSOR = false;
 
 		public static void Initialize(Bolt bolt)
 		{
