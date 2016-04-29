@@ -33,6 +33,7 @@ namespace bolt
 			cursor.X += TAB_SPACES;
 			GUI.SetCursorPos (cursor);
 			cursor.X -= TAB_SPACES;
+
 		}
 
 		public void KeyPressed(ConsoleKeyInfo keyInfo)
@@ -83,7 +84,9 @@ namespace bolt
 					lines [cursor.Y] = lines [cursor.Y].Remove (cursor.X - 1, 1);
 					cursor.X--;
 					XWant = cursor.X;
+					codeFile.Changed = true;
 					SelfUpdate ();
+					bolt.statusBar.SelfUpdate ();
 				} else if (cursor.X == 0)
 				{
 					int width = lines [cursor.Y - 1].Length;
@@ -101,12 +104,16 @@ namespace bolt
 				cursor.Y++;
 				lines [cursor.Y] = split [1];
 				cursor.X = 0;
+				codeFile.Changed = true;
 				SelfUpdate ();
+				bolt.statusBar.SelfUpdate ();
 			}
 			else {
 				lines [cursor.Y] = lines [cursor.Y].Insert (cursor.X, "" + keyInfo.KeyChar);
 				cursor.X++;
+				codeFile.Changed = true;
 				SelfUpdate ();
+				bolt.statusBar.SelfUpdate ();
 			}
 			bolt.CurrentlyUpdating = this;
 			//ASSUMING TABS ARE 4 SPACES

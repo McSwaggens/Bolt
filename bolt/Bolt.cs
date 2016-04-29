@@ -12,6 +12,8 @@ namespace bolt
 		public bool Exiting = false;
 		public Editor editor;
 		public GraphicalInterface FocusedComponent;
+		public StatusBar statusBar;
+		public static Bolt TEMP_INSTANCE;
 
 		public SubDirectory RootDirectory;
 		//Code file only for now
@@ -28,14 +30,16 @@ namespace bolt
 		public Bolt (string fileLocation)
 		{
 
+			TEMP_INSTANCE = this;
+
 			Console.Clear ();
 
 			GUI.Initialize (this);
 
-			StatusBar bar = new StatusBar (this, fileLocation);
-			bar.Format(new Location(0, 0), new Size(GUI.ScreenWidth, 1));
+			statusBar = new StatusBar (this, fileLocation);
+			statusBar.Format(new Location(0, 0), new Size(GUI.ScreenWidth, 1));
 
-			Components.Add (bar);
+			Components.Add (statusBar);
 
 			isRepository = Directory.Exists (fileLocation) && File.Exists(fileLocation);
 

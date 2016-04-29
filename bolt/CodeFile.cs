@@ -7,10 +7,21 @@ namespace bolt
 		public SubDirectory Location;
 		public string FileName;
 		public string FileType;
-		public bool Saved = false;
-		public bool Changed = false;
-		public string code;
 
+		public bool Saved = false;
+
+		private bool changed = false;
+		public bool Changed
+		{
+			get { return changed; }
+			set
+			{
+				changed = value;
+				Saved = false;
+			}
+		}
+
+		public string code;
 		public CodeFile (SubDirectory directory, string fileName)
 		{
 			this.FileName = fileName;
@@ -21,18 +32,16 @@ namespace bolt
 		}
 
 		public void Save(string code) {
-			//StreamWriter sw = new StreamWriter(Location.Location + "/" + FileName);
-
 			try {
 				File.WriteAllText(Location.Location + "/" + FileName, code);
-				Saved = true;
 				Changed = false;
+				Saved = true;
 			}
 			catch (Exception e) {
 				Saved = false;
 			}
 			finally {
-				
+				bolt.Bolt.TEMP_INSTANCE.statusBar.SelfUpdate ();
 			}
 		}
 	}
