@@ -22,13 +22,15 @@ namespace bolt
 
 		public override void Update ()
 		{
-			for (int i = Scroll; i < lines.Count && i < size.Height; i++)
+			int i = Scroll;
+			for (; i < lines.Count && i < size.Height; i++)
 			{
 				//TODO Syntax Highlighting
 				GUI.ClearLine(i);
 				GUI.DrawString((Settings.SHOW_LINE_NUMBERS ? (i + ":\t") : "") + lines[i], new Location(0, i));
 			}
-
+			for (; i < size.Height; i++)
+				GUI.ClearLine(i);
 			//ASSUMING TABS ARE 4 SPACES
 			cursor.X += TAB_SPACES;
 			GUI.SetCursorPos (cursor);
