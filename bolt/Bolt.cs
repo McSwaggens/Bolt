@@ -49,7 +49,6 @@ namespace bolt
 			}
 
 			inputManager = new InputManager (this);
-			inputManager.StartListener ();
 
 			//Console Initialization
 			//Undone when CTRL+C is pressed in InputManager.cs
@@ -65,10 +64,7 @@ namespace bolt
 			//Draw components to screen
 			Refresh ();
 
-			//Infinite Loop
-			while (!Exiting)
-			{
-			}
+			inputManager.StartListener ();
 		}
 
 		public void Refresh()
