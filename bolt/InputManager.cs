@@ -41,6 +41,9 @@ namespace bolt
 					dialog.Chosen += (bool result) => {
 						if (result) bolt.Save();
 						bolt.Exiting = true;
+						Console.ResetColor();
+						Console.Clear();
+						Console.CursorVisible = true;
 						Environment.Exit(0);
 					};
 					bolt.AddComponent(dialog);
