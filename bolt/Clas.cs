@@ -10,10 +10,11 @@ namespace bolt {
         
         private static Dictionary<string, bool> Flags = new Dictionary<string, bool>()
         {
-            {"d",   false},
+            { "dc",   false }, // Default config
+            { "", true }
         };
         
-        private static bool DO_EXECUTE = true;
+        public static bool DO_EXECUTE = true;
         
         private static Dictionary<List<string>, string> TextArguments = new Dictionary<List<string>, string>() {
             {new List<string>{"h", "help"}, 
@@ -25,13 +26,16 @@ namespace bolt {
 bolt [File] [[- | --] argument] ...
 
 [Description]
-MISSING
+Bolt is an open source modular terminal text editor with syntax highlighting functionality
+ written in C# for GNU/Linux or OSX systems.
+
 
 [Command Line Arguments]
 Type these in for the desired effect.
 
--M (missing)
-    MISSING
+-dc (default config)
+    Ignores the ~/.bolt config.
+
     
 [Github]
 http://www.Github.com/McSwaggens/Bolt/
