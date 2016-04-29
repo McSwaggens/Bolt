@@ -54,9 +54,22 @@
     <Compile Include="Editor.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ControlsPanel.cs" />
+    <Compile Include="Config\Token.cs" />
+    <Compile Include="Config\Word.cs" />
+    <Compile Include="Config\Integer.cs" />
+    <Compile Include="Config\ConfigLexer.cs" />
+    <Compile Include="Config\Character.cs" />
+    <Compile Include="Config\String.cs" />
+    <Compile Include="Config\Operator.cs" />
+    <Compile Include="Config\OperatorType.cs" />
+    <Compile Include="Config\ConfigParser.cs" />
+    <Compile Include="Config\EnumKeyword.cs" />
+    <Compile Include="Config\Keyword.cs" />
+    <Compile Include="Config\ValueTokenType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Components\" />
+    <Folder Include="Config\" />
   </ItemGroup>
 </Project>

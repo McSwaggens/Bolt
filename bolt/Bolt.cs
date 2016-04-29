@@ -30,6 +30,9 @@ namespace bolt
 
 		public Bolt (string fileLocation)
 		{
+			//TODO: check for NO_LOAD_CONFIG flag in command line args
+
+			Settings.LoadSettings ("/home/daniel/.bolt");
 
 			TEMP_INSTANCE = this;
 
