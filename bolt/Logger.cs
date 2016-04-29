@@ -19,6 +19,14 @@ namespace bolt
 			Console.WriteLine(text);
 			Console.ForegroundColor = prevColor;
 		}
+		
+		public static void LogWarning(string text)
+		{
+			ConsoleColor prevColor = Console.ForegroundColor;
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine(text);
+			Console.ForegroundColor = prevColor;
+		}
 
 		public static void Log(string text)
 		{
