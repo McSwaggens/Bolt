@@ -42,7 +42,7 @@ namespace bolt
 			
 			if (!File.Exists(fileLocation))
 			{
-				Logger.LogError($"Unknown or missing file \"{fileLocation}\",\nplease make sure the first parameter is the file you wish to edit.");
+				File.Create(fileLocation).Close();
 			}
 			
 			//Uncomment for file input information, aswell as; working directory.
