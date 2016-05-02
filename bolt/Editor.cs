@@ -71,7 +71,7 @@ namespace bolt
 							cursor.X = XWant;
 						SelfUpdate ();
 					}
-				} else {
+				} else if (cursor.Y + Scroll != lines.Count-1) {
 					cursor.Y++;
 					if (XWant > lines [cursor.Y + Scroll].Length)
 						cursor.X = lines [cursor.Y + Scroll].Length;
