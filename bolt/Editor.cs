@@ -37,6 +37,16 @@ namespace bolt
 			GUI.SetCursorPos (cursor);
 			cursor.X -= TAB_SPACES;
 		}
+		
+		public void UpdateLine (int line) {
+			bolt.CurrentlyUpdating = this;
+			GUI.ClearLine(line + Scroll);
+			bool showLineNumbers = (bool)Settings.settings ["SHOW_LINE_NUMBERS"];
+			GUI.DrawString((showLineNumbers ? ((line) + ":\t") : "") + lines[line], new Location(0, line + Scroll));
+			cursor.X += TAB_SPACES;
+			GUI.SetCursorPos (cursor);
+			cursor.X -= TAB_SPACES;
+		}
 
 		public void KeyPressed(ConsoleKeyInfo keyInfo)
 		{
@@ -112,7 +122,7 @@ namespace bolt
 					cursor.X--;
 					XWant = cursor.X;
 					codeFile.Changed = true;
-					SelfUpdate ();
+					UpdateLine(cursor.Y + Scroll);
 					bolt.statusBar.SelfUpdate ();
 				} else if (cursor.X == 0 && cursor.Y != 0)
 				{
@@ -139,7 +149,7 @@ namespace bolt
 				lines [cursor.Y + Scroll] = lines [cursor.Y + Scroll].Insert (cursor.X, "" + keyInfo.KeyChar);
 				cursor.X++;
 				codeFile.Changed = true;
-				SelfUpdate ();
+				UpdateLine(cursor.Y + Scroll);
 				bolt.statusBar.SelfUpdate ();
 			}
 			bolt.CurrentlyUpdating = this;
