@@ -18,7 +18,7 @@ namespace bolt
 		};
 
 		public static void LoadSettings (string configLocation) {
-			if (!File.Exists("configLocation")) {
+			if (!File.Exists(configLocation)) {
 				string construct = "#Default Bolt config\n";
 				foreach (KeyValuePair<string, object> pair in settings) {
 					construct += pair.Key + "=" + pair.Value.ToString() + "\n";
