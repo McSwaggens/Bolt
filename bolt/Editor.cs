@@ -8,7 +8,7 @@ namespace bolt
 		//public static int TAB_SPACES => ((bool)Settings.settings["SHOW_LINE_NUMBERS"]) ? 8 : 0;
 		public static int TAB_SPACES = 8;
 		public int Scroll = 0;
-		public Location cursor = new Location(0, 20);
+		public Location cursor = new Location(0, 0);
 		public List<string> lines;
 		public CodeFile codeFile;
 		public int XWant = 0;
