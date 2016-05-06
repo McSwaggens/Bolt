@@ -14,9 +14,9 @@ namespace bolt
 
 		public override void Update ()
 		{
-			GUI.FillRectangle(new Location(0, 0), new Location(GUI.ScreenWidth, 1), ConsoleColor.White);
+			GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.White);
 			GUI.DrawString ("  Bolt v1.0 Alpha", new Location(0, 0), ConsoleColor.Black, ConsoleColor.White);
-			GUI.DrawString (FileLocation, new Location((GUI.ScreenWidth / 2) - (FileLocation.Length / 2), 0), ConsoleColor.Black, ConsoleColor.White);
+			GUI.DrawString (FileLocation, new Location((size.Width / 2) - (FileLocation.Length / 2), 0), ConsoleColor.Black, ConsoleColor.White);
 			string strEndDraw = "No Changes";
 			if (bolt.codeFile.Saved)
 				strEndDraw = "Saved";
