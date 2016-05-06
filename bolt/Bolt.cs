@@ -97,6 +97,10 @@ namespace bolt
 			editor.Focus ();
 			AddComponent (editor);
 
+			//Start the GUI Listener
+			//this will raise an event when the console is resized.
+			GUI.StartGUIEventListener();
+
 			//Draw components to screen
 			Refresh ();
 
@@ -145,6 +149,13 @@ namespace bolt
 		public void Save()
 		{
 			editor.codeFile.Save (editor.GetCode ());
+		}
+		
+		public void SizeChanged() {
+			editor.size.Width = GUI.ScreenWidth;
+			statusBar.size.Width = GUI.ScreenWidth;
+			controlsPanel.size.Width = GUI.ScreenWidth;
+			Refresh ();
 		}
 	}
 }

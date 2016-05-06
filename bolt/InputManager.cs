@@ -23,6 +23,7 @@ namespace bolt
 					Console.Clear();
 					Console.CursorVisible = true;
 					bolt.Exiting = true;
+					GUI.StopGUIEventListener ();
 					Thread.Sleep(10);
 					Console.WriteLine("CTRL+C Pressed... Exiting.");
 					Environment.Exit(0);

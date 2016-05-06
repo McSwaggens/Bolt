@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace bolt
 {
@@ -11,6 +12,8 @@ namespace bolt
 		{
 			GUI.bolt = bolt;
 		}
+		
+		private static int LastScreenWidth = Console.BufferWidth, LastScreenHeight = Console.BufferHeight-1;
 
 		public static int ScreenWidth
 		{
@@ -18,6 +21,35 @@ namespace bolt
 			{
 				return Console.BufferWidth;
 			}
+		}
+
+		private static Thread guiListenerThread;
+
+		public static void StopGUIEventListener() {
+			if (guiListenerThread != null && guiListenerThread.IsAlive)
+				guiListenerThread.Abort ();
+		}
+
+		public static void StartGUIEventListener() {
+			if (guiListenerThread == null || !guiListenerThread.IsAlive) {
+				guiListenerThread = new Thread (() => {
+					while (true) {
+						if (HasSizeChanged ())
+							bolt.SizeChanged ();
+						Thread.Sleep (20);
+					}
+				});
+				guiListenerThread.Start ();
+			}
+		}
+
+		public static bool HasSizeChanged() {
+			if (LastScreenWidth != Console.BufferWidth || LastScreenHeight != Console.BufferHeight-1) {
+				LastScreenWidth = Console.BufferWidth;
+				LastScreenHeight = Console.BufferHeight-1;
+				return true;
+			}
+			return false;
 		}
 
 		public static int ScreenHeight
