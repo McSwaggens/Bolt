@@ -93,9 +93,11 @@ namespace bolt
 						Scroll--;
 						cursor.Y--;
 						cursor.X = lines [cursor.Y + Scroll].Length;
+						XWant = cursor.X;
 					} else if (cursor.Y != 0) {
 						cursor.Y--;
 						cursor.X = lines [cursor.Y + Scroll].Length;
+						XWant = cursor.X;
 					}
 				} else { // Cursor is not at the bottom of the line
 					cursor.X--;
@@ -107,9 +109,11 @@ namespace bolt
 						Scroll++;
 						cursor.Y++;
 						cursor.X = 0;
+						XWant = 0;
 					} else if (cursor.Y + Scroll < lines.Count-1) {
 						cursor.Y++;
 						cursor.X = 0;
+						XWant = 0;
 					}
 				} else {
 					cursor.X++;
