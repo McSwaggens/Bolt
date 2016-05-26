@@ -41,7 +41,7 @@ namespace bolt
 				Saved = false;
 			}
 			finally {
-				bolt.Bolt.TEMP_INSTANCE.statusBar.SelfUpdate ();
+				bolt.Bolt.instance.statusBar.SelfUpdate ();
 			}
 		}
 	}

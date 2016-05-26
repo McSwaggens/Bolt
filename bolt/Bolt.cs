@@ -15,7 +15,7 @@ namespace bolt
 		public GraphicalInterface FocusedComponent;
 		public StatusBar statusBar;
 		public ControlsPanel controlsPanel;
-		public static Bolt TEMP_INSTANCE;
+		public static Bolt instance;
 
 		public SubDirectory RootDirectory;
 		//Code file only for now
@@ -57,7 +57,7 @@ namespace bolt
 				return;
 			}
 
-			TEMP_INSTANCE = this;
+			instance = this;
 
 			Console.Clear ();
 
