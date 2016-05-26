@@ -8,9 +8,7 @@ namespace bolt
 			"^O Save",
 			"^X Save and exit",
 			"^C Exit without saving",
-			"^K Delete line",
-			"The quick brown fox jumps over a lazy dog.",
-			"The quick brown fox jumps over a lazy dog.The quick brown fox jumps over a lazy dog.The quick brown fox jumps over a lazy dog.The quick brown fox jumps over a lazy dog.",
+			"^K Delete line"
 		};
 
 
