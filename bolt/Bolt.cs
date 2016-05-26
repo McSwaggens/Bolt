@@ -153,8 +153,10 @@ namespace bolt
 		
 		public void SizeChanged() {
 			editor.size.Width = GUI.ScreenWidth;
+			editor.size.Height = GUI.ScreenHeight-1;
 			statusBar.size.Width = GUI.ScreenWidth;
 			controlsPanel.size.Width = GUI.ScreenWidth;
+			controlsPanel.Move(new Location (0, GUI.ScreenHeight));
 			Refresh ();
 		}
 	}
