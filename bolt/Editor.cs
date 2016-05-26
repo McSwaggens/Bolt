@@ -134,6 +134,7 @@ namespace bolt
 					lines.RemoveAt (cursor.Y + Scroll);
 					cursor.Y--;
 					cursor.X = width;
+					XWant = width;
 					SelfUpdate ();
 				}
 			} else if (keyInfo.Key == ConsoleKey.Enter) {
