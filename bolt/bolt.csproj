@@ -53,9 +53,7 @@
     <Compile Include="SubDirectory.cs" />
     <Compile Include="CodeFile.cs" />
     <Compile Include="InputListener.cs" />
-    <Compile Include="Editor.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ControlsPanel.cs" />
     <Compile Include="Config\Token.cs" />
     <Compile Include="Config\Word.cs" />
     <Compile Include="Config\Integer.cs" />
@@ -69,6 +67,8 @@
     <Compile Include="Config\Keyword.cs" />
     <Compile Include="Config\ValueTokenType.cs" />
     <Compile Include="Config\Boolean.cs" />
+    <Compile Include="Components\ControlsPanel.cs" />
+    <Compile Include="Components\Editor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
