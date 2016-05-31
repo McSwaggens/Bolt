@@ -22,7 +22,8 @@ namespace bolt
 			{
 				ConsoleKeyInfo keyInfo = Console.ReadKey();
 				
-				OnKeyPressed(keyInfo);
+				if (OnKeyPressed != null)
+					OnKeyPressed(keyInfo);
 				
 				if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.C)
 				{

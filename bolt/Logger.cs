@@ -18,8 +18,11 @@ namespace bolt
 			Console.ForegroundColor = color;
 			Console.WriteLine(text);
 			Console.ForegroundColor = prevColor;
-			OnLoggedAll(text);
-			OnNormalLog(text);
+			
+			if (OnLoggedAll != null)
+				OnLoggedAll(text);
+			if (OnNormalLog != null)
+				OnNormalLog(text);
 		}
 
 		public static void LogError(string text)
@@ -28,8 +31,11 @@ namespace bolt
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine(text);
 			Console.ForegroundColor = prevColor;
-			OnLoggedAll(text);
-			OnErrorLogged(text);
+			
+			if (OnLoggedAll != null)
+				OnLoggedAll(text);
+			if (OnErrorLogged != null)
+				OnErrorLogged(text);
 		}
 		
 		public static void LogWarning(string text)
@@ -38,15 +44,21 @@ namespace bolt
 			Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine(text);
 			Console.ForegroundColor = prevColor;
-			OnLoggedAll(text);
-			OnWarningLogged(text);
+			
+			if (OnLoggedAll != null)
+				OnLoggedAll(text);
+			if (OnWarningLogged != null)
+				OnWarningLogged(text);
 		}
 
 		public static void Log(string text)
 		{
 			Console.WriteLine(text);
-			OnLoggedAll(text);
-			OnNormalLog(text);
+			
+			if (OnLoggedAll != null)
+				OnLoggedAll(text);
+			if (OnNormalLog != null)
+				OnNormalLog(text);
 		}
 	}
 }
