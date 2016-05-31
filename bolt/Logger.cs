@@ -2,15 +2,15 @@
 
 namespace bolt
 {
-	public delegate void LoggerEventRaised(string message);
+	public delegate void LoggerEvent(string message);
 	
 	public class Logger
 	{
-		public static event LoggerEventRaised OnLoggedAll;
+		public static event LoggerEvent OnLoggedAll;
 		
-		public static event LoggerEventRaised OnNormalLog;
-		public static event LoggerEventRaised OnErrorLogged;
-		public static event LoggerEventRaised OnWarningLogged;
+		public static event LoggerEvent OnNormalLog;
+		public static event LoggerEvent OnErrorLogged;
+		public static event LoggerEvent OnWarningLogged;
 		
 		public static void LogColor(string text, ConsoleColor color)
 		{
