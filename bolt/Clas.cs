@@ -43,7 +43,7 @@ http://www.Github.com/McSwaggens/Bolt/
 --------------------[PashRuntime Help]--------------------
 "},
             {new List<string>{"v", "version"}, 
-$@"
+@"
 Bolt v1.0
 "}
         };
