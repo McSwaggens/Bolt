@@ -2,8 +2,12 @@
 using System.Threading;
 namespace bolt
 {
+	public delegate void InputEvent(ConsoleKeyInfo keyInfo);
+	
 	public class InputManager
 	{
+		public static event InputEvent OnKeyPressed;
+		
 		private Bolt bolt;
 		private Thread listenerThread;
 		public bool CancelKeySpread = false;
@@ -11,12 +15,15 @@ namespace bolt
 		{
 			this.bolt = bolt;
 		}
-
+		
 		public void StartListener()
 		{
 			while (true) // TODO: Exit listener
 			{
 				ConsoleKeyInfo keyInfo = Console.ReadKey();
+				
+				OnKeyPressed(keyInfo);
+				
 				if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.C)
 				{
 					Console.ResetColor();
