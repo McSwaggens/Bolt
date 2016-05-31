@@ -4,11 +4,11 @@ namespace bolt
 {
 	public class GraphicalInterface
 	{
-		public string Name;
+		public string name;
 		public Location location;
 		public Size size;
-		public bool Focused = false;
-		public bool Shown = true;
+		public bool focused = false;
+		public bool visible = true;
 		public Bolt bolt;
 
 		public GraphicalInterface (Bolt bolt)
@@ -22,18 +22,18 @@ namespace bolt
 
 		public void Focus()
 		{
-			if (Focused)
+			if (focused)
 				return;
-			Focused = true;
+			focused = true;
 			bolt.FocusedComponent = this;
 			OnFocused ();
 		}
 
 		public void Unfocus()
 		{
-			if (!Focused)
+			if (!focused)
 				return;
-			Focused = false;
+			focused = false;
 			bolt.RemoveFocus (this);
 			OnUnfocused ();
 		}

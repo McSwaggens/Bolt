@@ -49,7 +49,7 @@ namespace bolt
 
 		public void KeyPressed(ConsoleKeyInfo keyInfo)
 		{
-			if (!Focused)
+			if (!focused)
 			{
 				return;
 			}
