@@ -51,7 +51,7 @@ namespace bolt
 			///return;
 			
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
-			Settings.LoadSettings (((OSInfo.OS_OSX || OSInfo.OS_WINDOWS) ? "/Users" : "/home") + "/daniel/.bolt");
+			Settings.LoadSettings (((OSInfo.OS_OSX || OSInfo.OS_WINDOWS) ? "/Users" : "/home") + $"/{Environment.UserName}/.bolt");
 			if (Settings.LOAD_FAILED) {
 				Logger.LogError ("Failed to load settings... Exiting.");
 				return;
