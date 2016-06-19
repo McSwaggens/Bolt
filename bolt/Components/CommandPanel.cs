@@ -2,37 +2,63 @@
 
 namespace bolt
 {
-	public class CommandPanel : GraphicalInterface
+	public class CommandPanel : GraphicalInterface, InputListener
 	{
-		private static string[] controls = new string[] {
-			"^O Save",
-			"^X Save and exit",
-			"^C Exit without saving",
-			"^K Delete line"
-		};
-
-
+		public string currentCommand = "";
+		
 		public CommandPanel (Bolt bolt) : base (bolt)
 		{
 		}
 
 		public override void Update ()
 		{
-			int division = GetMaxPosible();
-			int pos = 0;
-			GUI.FillRectangle (new Location (0, 0), new Location (size.Width, 1), ConsoleColor.White);
+			//GUI.FillRectangle (new Location (0, 0), new Location (size.Width, 1), ConsoleColor.Black);
 			
-		}
-
-		int GetMaxPosible() {
-			int len = 0;
-			int pos = 0;
-			foreach (string control in controls) {
-				len += control.Length + 3;
-				if (len < size.Width)
-					pos++;
+			if (!this.focused)
+			{
+				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
+				GUI.DrawString($"\"{bolt.codeFile.FileName}\"", new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
 			}
-			return pos;
+			else
+			{
+				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
+				GUI.DrawString(":" + currentCommand, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
+			}
+		}
+		
+		public void KeyPressed(ConsoleKeyInfo keyInfo)
+		{
+			if (focused)
+			{
+				if (keyInfo.Key == ConsoleKey.Enter)
+				{
+					//Process command
+					focused = false;
+					bolt.SwitchFocus(bolt.editor);
+					bolt.Refresh();
+				}
+				else if (keyInfo.Key == ConsoleKey.Backspace)
+				{
+					currentCommand = currentCommand.Remove(currentCommand.Length-1, 1);
+				}
+				else
+				{
+					currentCommand += keyInfo.KeyChar;
+				}
+			}
+			else
+			{
+				//Update line number
+				//SelfUpdate();
+			}
+		}
+		
+		
+		public override void OnFocused()
+		{
+			currentCommand = "";
+			bolt.CurrentlyUpdating = this;
+			Update();
 		}
 	}
 }
