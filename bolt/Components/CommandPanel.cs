@@ -2,7 +2,7 @@
 
 namespace bolt
 {
-	public class ControlsPanel : GraphicalInterface
+	public class CommandPanel : GraphicalInterface
 	{
 		private static string[] controls = new string[] {
 			"^O Save",
@@ -12,9 +12,8 @@ namespace bolt
 		};
 
 
-		public ControlsPanel (Bolt bolt) : base (bolt)
+		public CommandPanel (Bolt bolt) : base (bolt)
 		{
-			
 		}
 
 		public override void Update ()
@@ -22,14 +21,7 @@ namespace bolt
 			int division = GetMaxPosible();
 			int pos = 0;
 			GUI.FillRectangle (new Location (0, 0), new Location (size.Width, 1), ConsoleColor.White);
-			for (int i = 0; i < division; i++)
-			{
-				string control = controls [i];
-				if (i != division - 1)
-					control += " | ";
-				GUI.DrawString (control, new Location(pos, 0), ConsoleColor.Black, ConsoleColor.White);
-				pos+= control.Length;
-			}
+			
 		}
 
 		int GetMaxPosible() {
