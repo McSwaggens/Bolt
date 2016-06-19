@@ -14,7 +14,7 @@ namespace bolt
 		public Editor editor;
 		public GraphicalInterface FocusedComponent;
 		public StatusBar statusBar;
-		public ControlsPanel controlsPanel;
+		public CommandPanel commandPanel;
 		public static Bolt instance;
 
 		public SubDirectory RootDirectory;
@@ -87,9 +87,9 @@ namespace bolt
 			Console.TreatControlCAsInput = true;
 
 			//Initialize Text Ballet (Bottom of screen)
-			controlsPanel = new ControlsPanel(this);
-			controlsPanel.Format (new Location (0, GUI.ScreenHeight), new Size (GUI.ScreenWidth, 1));
-			AddComponent (controlsPanel);
+			commandPanel = new CommandPanel(this);
+			commandPanel.Format (new Location (0, GUI.ScreenHeight), new Size (GUI.ScreenWidth, 1));
+			AddComponent (commandPanel);
 
 			//Initialize Text/Code Editor
 			editor = new Editor(this, codeFile);
@@ -155,8 +155,8 @@ namespace bolt
 			editor.size.Width = GUI.ScreenWidth;
 			editor.size.Height = GUI.ScreenHeight-1;
 			statusBar.size.Width = GUI.ScreenWidth;
-			controlsPanel.size.Width = GUI.ScreenWidth;
-			controlsPanel.Move(new Location (0, GUI.ScreenHeight));
+			commandPanel.size.Width = GUI.ScreenWidth;
+			commandPanel.Move(new Location (0, GUI.ScreenHeight));
 			Refresh ();
 		}
 	}
