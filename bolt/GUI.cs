@@ -90,6 +90,18 @@ namespace bolt
 			Console.Write (str);
 			Console.ResetColor();
 		}
+		
+		public static void DrawString(string str, Location location, ConsoleColor ForeColor)
+		{
+			location.X += bolt.CurrentlyUpdating.location.X;
+			location.Y += bolt.CurrentlyUpdating.location.Y;
+
+			Console.ForegroundColor = ForeColor;
+
+			Console.SetCursorPosition (location.X, location.Y);
+			Console.Write (str);
+			Console.ResetColor();
+		}
 
 		public static void SetCursorPos(Location loc)
 		{
