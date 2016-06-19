@@ -54,25 +54,25 @@
     <Compile Include="CodeFile.cs" />
     <Compile Include="InputListener.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Config\Token.cs" />
-    <Compile Include="Config\Word.cs" />
-    <Compile Include="Config\Integer.cs" />
-    <Compile Include="Config\ConfigLexer.cs" />
-    <Compile Include="Config\Character.cs" />
-    <Compile Include="Config\String.cs" />
-    <Compile Include="Config\Operator.cs" />
-    <Compile Include="Config\OperatorType.cs" />
-    <Compile Include="Config\ConfigParser.cs" />
-    <Compile Include="Config\EnumKeyword.cs" />
-    <Compile Include="Config\Keyword.cs" />
-    <Compile Include="Config\ValueTokenType.cs" />
-    <Compile Include="Config\Boolean.cs" />
     <Compile Include="Components\ControlsPanel.cs" />
     <Compile Include="Components\Editor.cs" />
+    <Compile Include="Parser\Token.cs" />
+    <Compile Include="Parser\Word.cs" />
+    <Compile Include="Parser\Integer.cs" />
+    <Compile Include="Parser\Lexer.cs" />
+    <Compile Include="Parser\Character.cs" />
+    <Compile Include="Parser\String.cs" />
+    <Compile Include="Parser\Operator.cs" />
+    <Compile Include="Parser\OperatorType.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Parser\EnumKeyword.cs" />
+    <Compile Include="Parser\Keyword.cs" />
+    <Compile Include="Parser\ValueTokenType.cs" />
+    <Compile Include="Parser\Boolean.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Components\" />
-    <Folder Include="Config\" />
+    <Folder Include="Parser\" />
   </ItemGroup>
 </Project>

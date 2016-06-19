@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace bolt
 {
-	public class ConfigLexer
+	public class Lexer
 	{
 		private static List<char> SpecialCharacters = new List<char>("+-!@#$%^&*():;,.?/~`\\|=<>{}[]".ToCharArray ());
 

@@ -29,8 +29,8 @@ namespace bolt
 			}
 			else {
 				try {
-					Token[] tokens = ConfigLexer.GenerateTokens (File.ReadAllText (configLocation));
-					settings = ConfigParser.Parse (tokens, settings);
+					Token[] tokens = Lexer.GenerateTokens (File.ReadAllText (configLocation));
+					settings = Parser.Parse (tokens, settings);
 				}catch (Exception e) {
 					LOAD_FAILED = true;
 				}
