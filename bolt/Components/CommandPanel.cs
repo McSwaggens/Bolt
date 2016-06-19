@@ -23,6 +23,7 @@ namespace bolt
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
 				GUI.DrawString(":" + currentCommand, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
+				GUI.SetCursorPos(new Location(currentCommand.Length + 1, 0));
 			}
 		}
 		
@@ -39,11 +40,16 @@ namespace bolt
 				}
 				else if (keyInfo.Key == ConsoleKey.Backspace)
 				{
-					currentCommand = currentCommand.Remove(currentCommand.Length-1, 1);
+					if (currentCommand.Length > 0) {
+						currentCommand = currentCommand.Remove(currentCommand.Length-1, 1);
+					}
+					SelfUpdate();
 				}
 				else
 				{
 					currentCommand += keyInfo.KeyChar;
+					SelfUpdate();
+					
 				}
 			}
 			else
