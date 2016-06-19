@@ -145,6 +145,15 @@ namespace bolt
 			FocusedComponent = Components [Components.Count-1];
 			FocusedComponent.Focus ();
 		}
+		
+		public void SwitchFocus(GraphicalInterface component)
+		{
+			FocusedComponent.focused = false;
+			FocusedComponent.OnUnfocused();
+			FocusedComponent = component;
+			FocusedComponent.focused = true;
+			FocusedComponent.OnFocused();
+		}
 
 		public void Save()
 		{
