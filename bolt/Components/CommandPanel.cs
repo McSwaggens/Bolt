@@ -53,7 +53,11 @@ namespace bolt
 			{
 				if (keyInfo.Key == ConsoleKey.Enter)
 				{
-					//Process command
+					//Parse command
+					Parser.Parse(currentCommand + ";\n", bolt.settings);
+					
+					
+					//Switch focus from current panel to editor
 					mode = CommandPanelMode.INFO;
 					focused = false;
 					bolt.SwitchFocus(bolt.editor);

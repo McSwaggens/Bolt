@@ -10,7 +10,13 @@ namespace bolt
 		 * DUMB CODE
 		 * BEWARE
 		 */
-
+		
+		public static void Parse(string text, Settings settings)
+		{
+			Token[] tokens = Lexer.GenerateTokens(text);
+			Parse(tokens, settings);
+		}
+		
 		public static void Parse(Token[] _tokens, Settings settings) {
 			
 			Token[][] TokenLines = SeperateLines (_tokens);
