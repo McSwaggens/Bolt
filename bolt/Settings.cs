@@ -13,7 +13,11 @@ namespace bolt
 
 		public List<Setting> settings = new List<Setting>()
 		{
-			new Setting("linenumbers", false)
+			new Setting("linenumbers", false,
+			() => {
+				//Redraw the editor
+				Bolt.instance.editor.SelfUpdate();
+			})
 		};
 		
 		public Setting this [string name]
@@ -63,10 +67,13 @@ namespace bolt
 				File.WriteAllText(configLocation, construct);
 			}
 			else {
-				try {
+				try
+				{
 					Token[] tokens = Lexer.GenerateTokens (File.ReadAllText (configLocation));
-					 Parser.Parse (tokens, this);
-				}catch (Exception e) {
+					Parser.Parse (tokens, this);
+				}
+				catch (Exception e)
+				{
 					LOAD_FAILED = true;
 				}
 			}
