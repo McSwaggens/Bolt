@@ -21,6 +21,8 @@ namespace bolt
 		//Code file only for now
 		public CodeFile codeFile;
 		public bool isRepository;
+		
+		public Settings settings;
 
 		/*
 		 * Controls;
@@ -51,7 +53,8 @@ namespace bolt
 			///return;
 			
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
-			Settings.LoadSettings (((OSInfo.OS_OSX || OSInfo.OS_WINDOWS) ? "/Users" : "/home") + $"/{Environment.UserName}/.boltrc");
+			settings = new Settings();
+			settings.LoadSettings (((OSInfo.OS_OSX || OSInfo.OS_WINDOWS) ? "/Users" : "/home") + $"/{Environment.UserName}/.boltrc");
 			if (Settings.LOAD_FAILED) {
 				Logger.LogError ("Failed to load settings... Exiting.");
 				return;

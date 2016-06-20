@@ -10,18 +10,16 @@ namespace bolt
 	{
 		public static bool LOAD_FAILED = false;
 
-		public static Dictionary<string, object> settings = new Dictionary<string, object> () {
-			{ "SHOW_LINE_NUMBERS", true },
-			{ "ENABLE_SYNTAX_HIGHLIGHTING", false },
-			{ "ENABLE_SHORTCUT_BAR", true },
-			{ "ENABLE_STATUS_BAR", true }
+		public Dictionary<string, object> settings = new Dictionary<string, object> () {
+			{ "linenumbers", false },
+			{ "syntax_highlighting", false }
 		};
 
-		public static void LoadSettings (string configLocation) {
+		public void LoadSettings (string configLocation) {
 			if (!File.Exists(configLocation)) {
 				string construct = "#Default Bolt config\n";
 				foreach (KeyValuePair<string, object> pair in settings) {
-					construct += pair.Key + "=" + pair.Value.ToString() + "\n";
+					construct += "set " + pair.Key + " " + pair.Value.ToString() + ";\n";
 				}
 				File.Create(configLocation).Close();
 				Thread.Sleep(10);
@@ -30,7 +28,7 @@ namespace bolt
 			else {
 				try {
 					Token[] tokens = Lexer.GenerateTokens (File.ReadAllText (configLocation));
-					settings = Parser.Parse (tokens, settings);
+					 Parser.Parse (tokens, this);
 				}catch (Exception e) {
 					LOAD_FAILED = true;
 				}

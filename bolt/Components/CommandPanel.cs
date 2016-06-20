@@ -76,7 +76,6 @@ namespace bolt
 				{
 					currentCommand += keyInfo.KeyChar;
 					SelfUpdate();
-					
 				}
 			}
 			else

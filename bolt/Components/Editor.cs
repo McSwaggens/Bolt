@@ -5,7 +5,7 @@ namespace bolt
 {
 	public class Editor : GraphicalInterface, InputListener
 	{
-		public static int TAB_SPACES => ((bool)Settings.settings["SHOW_LINE_NUMBERS"]) ? 8 : 0;
+		public static int TAB_SPACES => ((bool)Bolt.instance.settings.settings["linenumbers"]) ? 8 : 0;
 		public int Scroll = 0;
 		public Location cursor = new Location(0, 0);
 		public List<string> lines;
@@ -27,7 +27,7 @@ namespace bolt
 			{
 				//TODO Syntax Highlighting
 				GUI.ClearLine(i);
-				bool showLineNumbers = (bool)Settings.settings ["SHOW_LINE_NUMBERS"];
+				bool showLineNumbers = (bool)bolt.settings.settings ["linenumbers"];
 				GUI.DrawString((showLineNumbers ? ((i + Scroll) + ":\t") : "") + lines[i + Scroll], new Location(0, i));
 			}
 			for (; i < size.Height; i++)
@@ -50,7 +50,7 @@ namespace bolt
 		public void UpdateLine (int line) {
 			bolt.CurrentlyUpdating = this;
 			GUI.ClearLine(line + Scroll);
-			bool showLineNumbers = (bool)Settings.settings ["SHOW_LINE_NUMBERS"];
+			bool showLineNumbers = (bool)bolt.settings.settings ["linenumbers"];
 			GUI.DrawString((showLineNumbers ? ((line) + ":\t") : "") + lines[line], new Location(0, line + Scroll));
 			cursor.X += TAB_SPACES;
 			GUI.SetCursorPos (cursor);
