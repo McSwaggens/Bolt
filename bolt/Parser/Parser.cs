@@ -22,54 +22,42 @@ namespace bolt
 			Token[][] TokenLines = SeperateLines (_tokens);
 
 			foreach (Token[] tokens in TokenLines) {
-				if 	(	tokens[0] is Keyword 	&& ((Keyword)tokens[0]).keyword == EnumKeyword.SET
-					&& 	tokens[1] is Word 		&& settings.HasSetting((string)((Word)tokens[1]).raw)
-					)
-					{
-						string setting 	= (string)tokens[1].raw;
-						object val		= settings[setting].value;
+				if (tokens [0] is Keyword && ((Keyword)tokens [0]).keyword == EnumKeyword.SET
+				     && tokens [1] is Word && settings.HasSetting ((string)((Word)tokens [1]).raw)) {
+					string setting = (string)tokens [1].raw;
+					object val = settings [setting].value;
 						
-						if (val is string)
-						{
-							if (tokens[2] is bolt.String)
-							{
-								settings[setting].value = ((String)tokens[2]).raw;
-							}
-							else
-							{
-								ThrowError($"Expected type string for setting {(string)tokens[1].raw}");
-							}
+					if (val is string) {
+						if (tokens [2] is bolt.String) {
+							settings [setting].value = ((String)tokens [2]).raw;
+						} else {
+							ThrowError ($"Expected type string for setting {(string)tokens[1].raw}");
 						}
-						else if (val is bool)
-						{
-							if (tokens[2] is bolt.Boolean)
-							{
-								settings[setting].value = ((Boolean)tokens[2]).raw;
-							}
-							else
-							{
-								ThrowError($"Expected type boolean for setting {(string)tokens[1].raw}");
-							}
+					} else if (val is bool) {
+						if (tokens [2] is bolt.Boolean) {
+							settings [setting].value = ((Boolean)tokens [2]).raw;
+						} else {
+							ThrowError ($"Expected type boolean for setting {(string)tokens[1].raw}");
 						}
-						else if (val is int)
-						{
-							if (tokens[2] is bolt.Integer)
-							{
-								settings[setting].value = ((Integer)tokens[2]).raw;
-							}
-							else
-							{
-								ThrowError($"Expected type integer for setting {(string)tokens[1].raw}");
-							}
+					} else if (val is int) {
+						if (tokens [2] is bolt.Integer) {
+							settings [setting].value = ((Integer)tokens [2]).raw;
+						} else {
+							ThrowError ($"Expected type integer for setting {(string)tokens[1].raw}");
 						}
 					}
+				}
+				else
+				{
+					ThrowError ("Unknown command");
+				}
 			}
 		}
 		
 		private static void ThrowError(string error)
 		{
 			//TODO: Show exception
-			throw new Exception(error);
+			Bolt.instance.commandPanel.PushNotification("~!: " + error, ConsoleColor.Red);
 		}
 
 		private static void PrintSettings(Dictionary<string, object> settings) {
