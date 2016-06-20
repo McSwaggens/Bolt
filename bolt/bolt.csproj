@@ -70,6 +70,7 @@
     <Compile Include="Parser\Boolean.cs" />
     <Compile Include="Components\CommandPanel.cs" />
     <Compile Include="Setting.cs" />
+    <Compile Include="Shortcut.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

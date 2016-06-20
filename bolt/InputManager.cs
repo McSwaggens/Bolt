@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 namespace bolt
 {
@@ -7,6 +8,28 @@ namespace bolt
 	public class InputManager
 	{
 		public static event InputEvent OnKeyPressed;
+		
+		public List<Shortcut> shortcuts = new List<Shortcut>()
+		{
+			new Shortcut
+			(
+				() =>
+				{
+					Bolt.instance.Save();
+					Bolt.instance.commandPanel.PushNotification($"Saved \"{Bolt.instance.codeFile.FileName}\"");
+				},
+				ConsoleKey.O, true
+			),
+			new Shortcut
+			(
+				() =>
+				{
+					Bolt.instance.commandPanel.mode = CommandPanelMode.COMMAND;
+					Bolt.instance.SwitchFocus(Bolt.instance.commandPanel);
+				},
+				ConsoleKey.E, true
+			)
+		};
 		
 		private Bolt bolt;
 		private Thread listenerThread;
@@ -25,6 +48,16 @@ namespace bolt
 				if (OnKeyPressed != null)
 					OnKeyPressed(keyInfo);
 				
+				
+				foreach (Shortcut shortcut in shortcuts)
+				{
+					if (shortcut.Match(keyInfo))
+					{
+						shortcut.Fire();
+						return;
+					}
+				}
+				
 				if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.C)
 				{
 					Console.ResetColor();
@@ -35,11 +68,6 @@ namespace bolt
 					Thread.Sleep(10);
 					Console.WriteLine("CTRL+C Pressed... Exiting.");
 					Environment.Exit(0);
-				}
-				else if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.O)
-				{
-					bolt.Save();
-					bolt.commandPanel.PushNotification($"Saved \"{bolt.codeFile.FileName}\"");
 				}
 				else if (keyInfo.Modifiers == ConsoleModifiers.Control && keyInfo.Key == ConsoleKey.X)
 				{
@@ -53,12 +81,6 @@ namespace bolt
 						Environment.Exit(0);
 					};
 					bolt.AddComponent(dialog);
-				}
-				else
-				if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.E)
-				{
-					bolt.commandPanel.mode = CommandPanelMode.COMMAND;
-					bolt.SwitchFocus(bolt.commandPanel);
 				}
 				else
 				{
