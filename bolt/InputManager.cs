@@ -16,7 +16,7 @@ namespace bolt
 				() =>
 				{
 					Bolt.instance.Save();
-					Bolt.instance.commandPanel.PushNotification($"Saved \"{Bolt.instance.codeFile.FileName}\"");
+					Bolt.instance.commandPanel.PushNotification($"Saved \"{Bolt.instance.codeFile.FileName}\"", ConsoleColor.Gray);
 				},
 				ConsoleKey.O, true
 			),

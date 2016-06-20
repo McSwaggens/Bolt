@@ -9,6 +9,7 @@ namespace bolt
 		public string currentCommand = "";
 		
 		public string currentNotification = "ERR!";
+		public ConsoleColor notificationForeColor = ConsoleColor.Gray;
 		
 		public string defaultNotification
 		{
@@ -25,8 +26,9 @@ namespace bolt
 		}
 		
 		
-		public void PushNotification(string notification)
+		public void PushNotification(string notification, ConsoleColor foreColor)
 		{
+			notificationForeColor = foreColor;
 			currentNotification = notification;
 			SelfUpdate();
 			bolt.editor.ResetCursor();
@@ -37,7 +39,7 @@ namespace bolt
 			if (mode == CommandPanelMode.INFO)
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
-				GUI.DrawString(currentNotification, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
+				GUI.DrawString(currentNotification, new Location(0, 0), notificationForeColor, ConsoleColor.Black);
 			}
 			else if (mode == CommandPanelMode.COMMAND)
 			{
