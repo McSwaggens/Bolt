@@ -54,7 +54,7 @@ namespace bolt
 					if (shortcut.Match(keyInfo))
 					{
 						shortcut.Fire();
-						return;
+						continue;
 					}
 				}
 				
