@@ -37,6 +37,11 @@ namespace bolt
 			cursor.X -= TAB_SPACES;
 		}
 		
+		public override void OnFocused()
+		{
+			SelfUpdate();
+		}
+		
 		public void UpdateLine (int line) {
 			bolt.CurrentlyUpdating = this;
 			GUI.ClearLine(line + Scroll);

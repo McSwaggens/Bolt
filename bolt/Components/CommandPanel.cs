@@ -48,6 +48,12 @@ namespace bolt
 					}
 					SelfUpdate();
 				}
+				else if (keyInfo.Key == ConsoleKey.Escape)
+				{
+					mode = CommandPanelMode.INFO;
+					SelfUpdate();
+					bolt.SwitchFocus(bolt.editor);
+				}
 				else
 				{
 					currentCommand += keyInfo.KeyChar;
