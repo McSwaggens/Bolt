@@ -68,10 +68,6 @@ namespace bolt
 							current += c;
 					}
 				}
-				else
-				if (c == '\n') {
-					tokens.Add (new Operator (OperatorType.SemiColon));
-				}
 				//Check for operators
 				else if (SpecialCharacters.Contains (c)) {
 					for (; i < characters.Length; i++) {
