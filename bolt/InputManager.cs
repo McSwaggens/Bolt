@@ -57,8 +57,10 @@ namespace bolt
 					};
 					bolt.AddComponent(dialog);
 				}
+				else
 				if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.E)
 				{
+					bolt.commandPanel.mode = CommandPanelMode.COMMAND;
 					bolt.SwitchFocus(bolt.commandPanel);
 				}
 				else

@@ -4,6 +4,8 @@ namespace bolt
 {
 	public class CommandPanel : GraphicalInterface, InputListener
 	{
+		public CommandPanelMode mode = CommandPanelMode.INFO;
+		
 		public string currentCommand = "";
 		
 		public CommandPanel (Bolt bolt) : base (bolt)
@@ -14,12 +16,12 @@ namespace bolt
 		{
 			//GUI.FillRectangle (new Location (0, 0), new Location (size.Width, 1), ConsoleColor.Black);
 			
-			if (!this.focused)
+			if (mode == CommandPanelMode.INFO)
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
 				GUI.DrawString($"\"{bolt.codeFile.FileName}\"", new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
 			}
-			else
+			else if (mode == CommandPanelMode.COMMAND)
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
 				GUI.DrawString(":" + currentCommand, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
@@ -29,11 +31,12 @@ namespace bolt
 		
 		public void KeyPressed(ConsoleKeyInfo keyInfo)
 		{
-			if (focused)
+			if (mode == CommandPanelMode.COMMAND && focused)
 			{
 				if (keyInfo.Key == ConsoleKey.Enter)
 				{
 					//Process command
+					mode = CommandPanelMode.INFO;
 					focused = false;
 					bolt.SwitchFocus(bolt.editor);
 					bolt.Refresh();
@@ -66,6 +69,11 @@ namespace bolt
 			bolt.CurrentlyUpdating = this;
 			Update();
 		}
+	}
+	
+	public enum CommandPanelMode
+	{
+		INFO, COMMAND, DIALOG
 	}
 }
 
