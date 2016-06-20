@@ -17,17 +17,17 @@ namespace bolt
 
 			foreach (Token[] tokens in TokenLines) {
 				if 	(	tokens[0] is Keyword 	&& ((Keyword)tokens[0]).keyword == EnumKeyword.SET
-					&& 	tokens[1] is Word 		&& settings.settings.ContainsKey((string)((Word)tokens[1]).raw)
+					&& 	tokens[1] is Word 		&& settings.HasSetting((string)((Word)tokens[1]).raw)
 					)
 					{
 						string setting 	= (string)tokens[1].raw;
-						object val		= settings.settings[setting];
+						object val		= settings[setting].value;
 						
 						if (val is string)
 						{
 							if (tokens[2] is bolt.String)
 							{
-								settings.settings[setting] = ((String)tokens[2]).raw;
+								settings[setting].value = ((String)tokens[2]).raw;
 							}
 							else
 							{
@@ -38,7 +38,7 @@ namespace bolt
 						{
 							if (tokens[2] is bolt.Boolean)
 							{
-								settings.settings[setting] = ((Boolean)tokens[2]).raw;
+								settings[setting].value = ((Boolean)tokens[2]).raw;
 							}
 							else
 							{
@@ -49,7 +49,7 @@ namespace bolt
 						{
 							if (tokens[2] is bolt.Integer)
 							{
-								settings.settings[setting] = ((Integer)tokens[2]).raw;
+								settings[setting].value = ((Integer)tokens[2]).raw;
 							}
 							else
 							{

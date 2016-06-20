@@ -69,6 +69,7 @@
     <Compile Include="Parser\ValueTokenType.cs" />
     <Compile Include="Parser\Boolean.cs" />
     <Compile Include="Components\CommandPanel.cs" />
+    <Compile Include="Setting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

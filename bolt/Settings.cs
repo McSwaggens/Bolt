@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using bolt;
 
 namespace bolt
 {
@@ -10,16 +11,52 @@ namespace bolt
 	{
 		public static bool LOAD_FAILED = false;
 
-		public Dictionary<string, object> settings = new Dictionary<string, object> () {
-			{ "linenumbers", false },
-			{ "syntax_highlighting", false }
+		public List<Setting> settings = new List<Setting>()
+		{
+			new Setting("linenumbers", false)
 		};
+		
+		public Setting this [string name]
+		{
+			get
+			{
+				foreach (Setting setting in settings)
+				{
+					if (setting.name == name)
+						return setting;
+				}
+				throw new Exception($"No setting named \"{name}\" exists");
+			}
+			set
+			{
+				foreach (Setting setting in settings)
+				{
+					if (setting.name == name)
+					{
+						setting.value = value;
+						return;
+					}
+				}
+				throw new Exception($"No setting named \"{name}\" exists");
+			}
+		}
+		
+		public bool HasSetting(string name)
+		{
+			foreach (Setting setting in settings)
+			{
+				if (setting.name == name)
+					return true;
+			}
+			return false;
+		}
 
 		public void LoadSettings (string configLocation) {
 			if (!File.Exists(configLocation)) {
 				string construct = "#Default Bolt config\n";
-				foreach (KeyValuePair<string, object> pair in settings) {
-					construct += "set " + pair.Key + " " + pair.Value.ToString() + ";\n";
+				foreach (Setting setting in settings)
+				{
+					construct += "set " + setting.name + " " + setting.value.ToString() + ";\n";
 				}
 				File.Create(configLocation).Close();
 				Thread.Sleep(10);
