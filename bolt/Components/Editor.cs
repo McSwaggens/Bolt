@@ -42,6 +42,11 @@ namespace bolt
 			SelfUpdate();
 		}
 		
+		public void ResetCursor()
+		{
+			UpdateLine(cursor.Y + Scroll);
+		}
+		
 		public void UpdateLine (int line) {
 			bolt.CurrentlyUpdating = this;
 			GUI.ClearLine(line + Scroll);

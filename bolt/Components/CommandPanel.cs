@@ -8,18 +8,36 @@ namespace bolt
 		
 		public string currentCommand = "";
 		
+		public string currentNotification = "ERR!";
+		
+		public string defaultNotification
+		{
+			get
+			{
+				return $"\"{bolt.codeFile.FileName}\"";
+			}
+		}
+		
+		
 		public CommandPanel (Bolt bolt) : base (bolt)
 		{
+			currentNotification = defaultNotification;
+		}
+		
+		
+		public void PushNotification(string notification)
+		{
+			currentNotification = notification;
+			SelfUpdate();
+			bolt.editor.ResetCursor();
 		}
 
 		public override void Update ()
 		{
-			//GUI.FillRectangle (new Location (0, 0), new Location (size.Width, 1), ConsoleColor.Black);
-			
 			if (mode == CommandPanelMode.INFO)
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
-				GUI.DrawString($"\"{bolt.codeFile.FileName}\"", new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
+				GUI.DrawString(currentNotification, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
 			}
 			else if (mode == CommandPanelMode.COMMAND)
 			{

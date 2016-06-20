@@ -36,13 +36,10 @@ namespace bolt
 					Console.WriteLine("CTRL+C Pressed... Exiting.");
 					Environment.Exit(0);
 				}
-				else if (keyInfo.Modifiers == ConsoleModifiers.Control && keyInfo.Key == ConsoleKey.O)
+				else if ((keyInfo.Modifiers & ConsoleModifiers.Control) != 0 && keyInfo.Key == ConsoleKey.O)
 				{
-					Dialog dialog = new Dialog (bolt, "Are you sure you to overrite " + bolt.codeFile.FileName + "?");
-					dialog.Chosen += (bool result) => {
-						if (result) bolt.Save();
-					};
-					bolt.AddComponent(dialog);
+					bolt.Save();
+					bolt.commandPanel.PushNotification($"Saved \"{bolt.codeFile.FileName}\"");
 				}
 				else if (keyInfo.Modifiers == ConsoleModifiers.Control && keyInfo.Key == ConsoleKey.X)
 				{
