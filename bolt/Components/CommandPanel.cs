@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace bolt
 {
@@ -10,6 +11,8 @@ namespace bolt
 		
 		public string currentNotification = "ERR!";
 		public ConsoleColor notificationForeColor = ConsoleColor.Gray;
+		
+		List<char> symbols = new List<char>("+-!@#$%^&*():;,.?/~`\\|=<>{}[]".ToCharArray());
 		
 		public string defaultNotification
 		{
@@ -45,7 +48,7 @@ namespace bolt
 			{
 				GUI.FillRectangle(new Location(0, 0), new Location(size.Width, 1), ConsoleColor.Black);
 				GUI.DrawString(":" + currentCommand, new Location(0, 0), ConsoleColor.Gray, ConsoleColor.Black);
-				GUI.SetCursorPos(new Location(currentCommand.Length + 1, 0));
+				GUI.SetCursorPos(new Location(currentCommand.Length+1, 0));
 			}
 		}
 		
@@ -78,7 +81,7 @@ namespace bolt
 					SelfUpdate();
 					bolt.SwitchFocus(bolt.editor);
 				}
-				else
+				else if (char.IsLetterOrDigit (keyInfo.KeyChar) || symbols.Contains(keyInfo.KeyChar) || keyInfo.KeyChar == ' ')
 				{
 					currentCommand += keyInfo.KeyChar;
 					SelfUpdate();
@@ -95,8 +98,8 @@ namespace bolt
 		public override void OnFocused()
 		{
 			currentCommand = "";
-			bolt.CurrentlyUpdating = this;
-			Update();
+			SelfUpdate();
+			GUI.SetCursorPos(new Location(1, 0));
 		}
 	}
 	
