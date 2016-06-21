@@ -13,7 +13,6 @@ namespace bolt
 		public bool Exiting = false;
 		public Editor editor;
 		public GraphicalInterface FocusedComponent;
-		public StatusBar statusBar;
 		public CommandPanel commandPanel;
 		public static Bolt instance;
 
@@ -66,11 +65,6 @@ namespace bolt
 
 			GUI.Initialize (this);
 
-			statusBar = new StatusBar (this, fileLocation);
-			statusBar.Format(new Location(0, 0), new Size(GUI.ScreenWidth, 1));
-
-			Components.Add (statusBar);
-
 			isRepository = Directory.Exists (fileLocation) && File.Exists(fileLocation);
 
 			if (isRepository) {
@@ -96,7 +90,7 @@ namespace bolt
 
 			//Initialize Text/Code Editor
 			editor = new Editor(this, codeFile);
-			editor.Format (new Location (0, 1), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 2));
+			editor.Format (new Location (0, 0), new Size (GUI.ScreenWidth, GUI.ScreenHeight - 1));
 			editor.Focus ();
 			AddComponent (editor);
 
@@ -166,7 +160,6 @@ namespace bolt
 		public void SizeChanged() {
 			editor.size.Width = GUI.ScreenWidth;
 			editor.size.Height = GUI.ScreenHeight-1;
-			statusBar.size.Width = GUI.ScreenWidth;
 			commandPanel.size.Width = GUI.ScreenWidth;
 			commandPanel.Move(new Location (0, GUI.ScreenHeight));
 			Refresh ();

@@ -41,7 +41,7 @@ namespace bolt
 				Saved = false;
 			}
 			finally {
-				bolt.Bolt.instance.statusBar.SelfUpdate ();
+				//TODO: Push save notification to the command panel
 			}
 		}
 	}

@@ -75,7 +75,7 @@ namespace bolt
 		{
 			line += bolt.CurrentlyUpdating.location.Y;
 			string wiper = Util.StringSpacer (bolt.CurrentlyUpdating.size.Width);
-			DrawString(wiper, new Location(0, line-1));
+			DrawString(wiper, new Location(0, line));
 		}
 
 		public static void DrawString(string str, Location location, ConsoleColor ForeColor, ConsoleColor BackColor)

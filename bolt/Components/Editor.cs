@@ -136,7 +136,6 @@ namespace bolt
 					XWant = cursor.X;
 					codeFile.Changed = true;
 					UpdateLine(cursor.Y + Scroll);
-					bolt.statusBar.SelfUpdate ();
 				} else if (cursor.X == 0 && cursor.Y != 0)
 				{
 					int width = lines [(cursor.Y + Scroll)- 1].Length;
@@ -157,14 +156,12 @@ namespace bolt
 				cursor.X = 0;
 				codeFile.Changed = true;
 				SelfUpdate ();
-				bolt.statusBar.SelfUpdate ();
 			}
 			else {
 				lines [cursor.Y + Scroll] = lines [cursor.Y + Scroll].Insert (cursor.X, "" + keyInfo.KeyChar);
 				cursor.X++;
 				codeFile.Changed = true;
 				UpdateLine(cursor.Y + Scroll);
-				bolt.statusBar.SelfUpdate ();
 			}
 			bolt.CurrentlyUpdating = this;
 			cursor.X += TAB_SPACES;
