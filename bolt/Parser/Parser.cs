@@ -5,11 +5,6 @@ namespace bolt
 {
 	public class Parser
 	{
-		/*
-		 * DUMB COMPILER
-		 * DUMB CODE
-		 * BEWARE
-		 */
 		
 		public static void Parse(string text, Settings settings)
 		{
