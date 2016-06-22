@@ -31,35 +31,29 @@ namespace bolt
 						if (tokens [2] is bolt.String) {
 							settings [setting].value = ((String)tokens [2]).raw;
 						} else {
-							ThrowError ($"Expected type string for setting {(string)tokens[1].raw}");
+							Notification.Push ($"Expected type string for setting {(string)tokens[1].raw}", NotificationType.ERROR);
 						}
 					} else if (val is bool) {
 						if (tokens [2] is bolt.Boolean) {
 							settings [setting].value = ((Boolean)tokens [2]).raw;
 						} else {
-							ThrowError ($"Expected type boolean for setting {(string)tokens[1].raw}");
+							Notification.Push ($"Expected type boolean for setting {(string)tokens[1].raw}", NotificationType.ERROR);
 						}
 					} else if (val is int) {
 						if (tokens [2] is bolt.Integer) {
 							settings [setting].value = ((Integer)tokens [2]).raw;
 						} else {
-							ThrowError ($"Expected type integer for setting {(string)tokens[1].raw}");
+							Notification.Push ($"Expected type integer for setting {(string)tokens[1].raw}", NotificationType.ERROR);
 						}
 					}
 				}
 				else
 				{
-					ThrowError ("Unknown command");
+					Notification.Push("Unknown command", NotificationType.ERROR);
 				}
 			}
 		}
 		
-		private static void ThrowError(string error)
-		{
-			//TODO: Show exception
-			Bolt.instance.commandPanel.PushNotification("~!: " + error, ConsoleColor.Red);
-		}
-
 		private static void PrintSettings(Dictionary<string, object> settings) {
 			foreach (KeyValuePair<string, object> pair in settings) {
 				Console.WriteLine (pair.Key + "\t" + pair.Value);
