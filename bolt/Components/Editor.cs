@@ -11,6 +11,8 @@ namespace bolt
 		public List<string> lines;
 		public CodeFile codeFile;
 		public int XWant = 0;
+		
+		List<char> symbols = new List<char>("+-!@#$%^&*():;,.?/~`\\|=<>{}[]".ToCharArray());
 
 		public Editor (Bolt bolt, CodeFile codeFile) : base (bolt)
 		{
@@ -158,9 +160,14 @@ namespace bolt
 				SelfUpdate ();
 			}
 			else {
-				lines [cursor.Y + Scroll] = lines [cursor.Y + Scroll].Insert (cursor.X, "" + keyInfo.KeyChar);
-				cursor.X++;
-				codeFile.Changed = true;
+				char key = keyInfo.KeyChar;
+				if (char.IsSymbol(key) || char.IsLetterOrDigit(key) || symbols.Contains(key) || key == ' ')
+				{
+					lines [cursor.Y + Scroll] = lines [cursor.Y + Scroll].Insert (cursor.X, "" + key);
+					cursor.X++;
+					codeFile.Changed = true;
+				}
+				
 				UpdateLine(cursor.Y + Scroll);
 			}
 			bolt.CurrentlyUpdating = this;
