@@ -38,8 +38,8 @@ namespace bolt
 		{
 			if (Bolt.instance == null)
 				return;
-			
-			Bolt.instance.commandPanel.PushNotification( '~' + notificationChars[(int)type] + message, ConsoleColor.Gray);
+
+			Bolt.instance.commandPanel.PushNotification( '~' + "" + notificationChars[(int)type] +  message, notificationColors[(int)type]);
 		}
 	}
 }
