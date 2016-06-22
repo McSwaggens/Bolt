@@ -58,12 +58,12 @@ namespace bolt
 			{
 				if (keyInfo.Key == ConsoleKey.Enter)
 				{
+					//Switch focus from current panel to editor
+					PushDefaultNotification();
+					
 					//Parse command
 					Parser.Parse(currentCommand + ";\n", bolt.settings);
 					
-					
-					//Switch focus from current panel to editor
-					PushDefaultNotification();
 					mode = CommandPanelMode.INFO;
 					focused = false;
 					bolt.SwitchFocus(bolt.editor);
