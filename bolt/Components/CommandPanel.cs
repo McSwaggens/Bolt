@@ -63,6 +63,7 @@ namespace bolt
 					
 					
 					//Switch focus from current panel to editor
+					PushDefaultNotification();
 					mode = CommandPanelMode.INFO;
 					focused = false;
 					bolt.SwitchFocus(bolt.editor);
@@ -77,6 +78,7 @@ namespace bolt
 				}
 				else if (keyInfo.Key == ConsoleKey.Escape)
 				{
+					PushDefaultNotification();
 					mode = CommandPanelMode.INFO;
 					SelfUpdate();
 					bolt.SwitchFocus(bolt.editor);
@@ -92,6 +94,12 @@ namespace bolt
 				//Update line number
 				//SelfUpdate();
 			}
+		}
+		
+		public void PushDefaultNotification()
+		{
+			currentNotification = defaultNotification;
+			notificationForeColor = ConsoleColor.Gray;
 		}
 		
 		
