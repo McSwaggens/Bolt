@@ -71,6 +71,8 @@
     <Compile Include="Components\CommandPanel.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="Shortcut.cs" />
+    <Compile Include="NotificationHandler.cs" />
+    <Compile Include="NotificationType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
