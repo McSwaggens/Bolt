@@ -2,7 +2,7 @@
 
 namespace bolt
 {
-	public class NotificationHandler
+	public class Notification
 	{
 		private static ConsoleColor[] notificationColors =
 		{
