@@ -16,7 +16,7 @@ namespace bolt
 			set
 			{
 				_value = value;
-				if (Bolt.instance != null)
+				if (Bolt.instance != null && action != null)
 					action();
 			}
 		}
