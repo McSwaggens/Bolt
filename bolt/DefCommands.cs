@@ -57,6 +57,25 @@ namespace bolt
 						}
 					}
 				}
+			}),
+			new Command("quit", (args) => {
+				Bolt.instance.Quit();
+			}),
+			new Command("q", (args) => {
+				Bolt.instance.Quit();
+			}),
+			new Command("write", (args) => {
+				Bolt.instance.Save();
+				Bolt.instance.commandPanel.PushNotification($"Saved \"{Bolt.instance.codeFile.FileName}\"", ConsoleColor.Gray);
+				
+			}),
+			new Command("w", (args) => {
+				Bolt.instance.Save();
+				Bolt.instance.commandPanel.PushNotification($"Saved \"{Bolt.instance.codeFile.FileName}\"", ConsoleColor.Gray);
+			}),
+			new Command("wq", (args) => {
+				Bolt.instance.Save();
+				Bolt.instance.Quit();
 			})
 		};
 		
