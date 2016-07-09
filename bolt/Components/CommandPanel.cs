@@ -12,7 +12,7 @@ namespace bolt
 		public string currentNotification = "ERR!";
 		public ConsoleColor notificationForeColor = ConsoleColor.Gray;
 		
-		List<char> symbols = new List<char>("+-!@#$%^&*():;,.?/~`\\|=<>{}[]".ToCharArray());
+		List<char> symbols = new List<char>("+-!@#$%^&*():;,.?/~`\\|=<>{}[]\"'_".ToCharArray());
 		
 		public string defaultNotification
 		{
