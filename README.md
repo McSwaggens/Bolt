@@ -8,7 +8,8 @@ Bolt is a modular terminal text editor writen in C# for UNIX based systems
 - [x] Rich text editor inspired by GNU Nano
 - [x] Configuration file (~/.boltrc)
 - [x] Modular design
-- [ ] Shortcuts
+- [x] Shortcuts
+- [x] Command parsing
 - [ ] Syntax highlighting
 - [ ] Plugin system and API
 
