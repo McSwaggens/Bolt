@@ -103,6 +103,30 @@ namespace bolt
 
 			inputManager.StartListener ();
 		}
+		
+		public void Quit()
+		{
+			Console.ResetColor();
+			Console.Clear();
+			Console.CursorVisible = true;
+			Exiting = true;
+			GUI.StopGUIEventListener ();
+			Thread.Sleep(10);
+			Environment.Exit(0);
+		}
+		
+		public void Quit(string message)
+		{
+			Console.ResetColor();
+			Console.Clear();
+			Console.CursorVisible = true;
+			Exiting = true;
+			GUI.StopGUIEventListener ();
+			Thread.Sleep(10);
+			Console.WriteLine(message);
+			Environment.Exit(0);
+		}
+		
 
 		public void Refresh()
 		{
