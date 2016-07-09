@@ -31,6 +31,32 @@ namespace bolt
 					}
 					Notification.Push(combine);
 				}
+			}),
+			new Command("set", (args) => {
+				if (args [0] is Word && Bolt.instance.settings.HasSetting ((string)((Word)args [0]).raw)) {
+					string setting = (string)args [0].raw;
+					object val = Bolt.instance.settings [setting].value;
+						
+					if (val is string) {
+						if (args [1] is bolt.String) {
+							Bolt.instance.settings [setting].value = ((String)args [1]).raw;
+						} else {
+							Notification.Push ($"Expected type string for setting {(string)args[0].raw}", NotificationType.ERROR);
+						}
+					} else if (val is bool) {
+						if (args [1] is bolt.Boolean) {
+							Bolt.instance.settings [setting].value = ((Boolean)args [1]).raw;
+						} else {
+							Notification.Push ($"Expected type boolean for setting {(string)args[0].raw}", NotificationType.ERROR);
+						}
+					} else if (val is int) {
+						if (args [1] is bolt.Integer) {
+							Bolt.instance.settings [setting].value = ((Integer)args [1]).raw;
+						} else {
+							Notification.Push ($"Expected type integer for setting {(string)args[0].raw}", NotificationType.ERROR);
+						}
+					}
+				}
 			})
 		};
 		
