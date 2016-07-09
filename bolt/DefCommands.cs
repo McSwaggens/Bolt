@@ -5,7 +5,7 @@ namespace bolt
 {
 	public class DefCommands
 	{
-		public static List<Command> definedCommands = new List<Command>()
+		private static List<Command> definedCommands = new List<Command>()
 		{
 			new Command("print", (args) => {
 				if (Bolt.instance != null)
@@ -27,6 +27,30 @@ namespace bolt
 				}
 			})
 		};
+		
+		public static bool Contains (string name)
+		{
+			foreach (Command command in definedCommands)
+			{
+				if (command.name == name)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		public static Command Get (string name)
+		{
+			foreach (Command command in definedCommands)
+			{
+				if (command.name == name)
+				{
+					return command;
+				}
+			}
+			return null;
+		}
 	}
 }
 
