@@ -28,10 +28,14 @@ namespace bolt
 						Command command = DefCommands.Get((string)wCommand.raw);
 						command.action(cargs.ToArray());
 					}
+					else
+					{
+						Notification.Push($"Unknown command {(string)wCommand.raw}", NotificationType.ERROR);
+					}
 				}
 				else
 				{
-					Notification.Push("Unknown command", NotificationType.ERROR);
+					Notification.Push("Syntax error", NotificationType.ERROR);
 				}
 			}
 		}
