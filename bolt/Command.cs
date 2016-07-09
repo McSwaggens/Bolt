@@ -15,7 +15,7 @@ namespace bolt
 		
 		public static void Execute(string command)
 		{
-			Token[] tokens = Lexer.GenerateTokens(command);
+			Token[] tokens = Lexer.GenerateTokens(command + "\n");
 			Parser.Parse(tokens, Bolt.instance.settings);
 		}
 	}
