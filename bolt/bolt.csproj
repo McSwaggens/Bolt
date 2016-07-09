@@ -73,6 +73,8 @@
     <Compile Include="Shortcut.cs" />
     <Compile Include="NotificationType.cs" />
     <Compile Include="Notification.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="DefCommands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

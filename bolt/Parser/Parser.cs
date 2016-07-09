@@ -42,6 +42,9 @@ namespace bolt
 						}
 					}
 				}
+				else if (tokens[0] is Word)
+				{
+				}
 				else
 				{
 					Notification.Push("Unknown command", NotificationType.ERROR);
