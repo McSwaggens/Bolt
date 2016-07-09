@@ -44,6 +44,15 @@ namespace bolt
 				}
 				else if (tokens[0] is Word)
 				{
+					Word wCommand = (Word)tokens[0];
+					if (DefCommands.Contains((string)wCommand.raw))
+					{
+						List<Token> cargs = new List<Token>(tokens);
+						cargs.RemoveAt(0);
+						
+						Command command = DefCommands.Get((string)wCommand.raw);
+						command.action(cargs.ToArray());
+					}
 				}
 				else
 				{
