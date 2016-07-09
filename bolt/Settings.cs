@@ -16,7 +16,8 @@ namespace bolt
 			new Setting("linenumbers", false,
 			() => {
 				//Redraw the editor
-				Bolt.instance.editor.SelfUpdate();
+				if (Bolt.instance.editor != null)
+					Bolt.instance.editor.SelfUpdate();
 			})
 		};
 		
