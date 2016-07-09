@@ -12,6 +12,12 @@ namespace bolt
 			this.action = action;
 			this.name = name;
 		}
+		
+		public static void Execute(string command)
+		{
+			Token[] tokens = Lexer.GenerateTokens(command);
+			Parser.Parse(tokens, Bolt.instance.settings);
+		}
 	}
 }
 
