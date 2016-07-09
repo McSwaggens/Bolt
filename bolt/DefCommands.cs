@@ -16,7 +16,13 @@ namespace bolt
 						if (token is Word)
 						{
 							string name = (string)token.raw;
-							combine += Bolt.instance.settings[name].value + " ";
+							if (Bolt.instance.settings.HasSetting(name))
+								combine += Bolt.instance.settings[name].value + " ";
+							else
+							{
+								Notification.Push($"Cannot find variable {name}", NotificationType.ERROR);
+								return;
+							}
 						}
 						else
 						{
