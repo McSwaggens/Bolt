@@ -5,7 +5,7 @@ namespace bolt
 {
 	public class Editor : GraphicalInterface, InputListener
 	{
-		public static int TAB_SPACES => ((bool)Bolt.instance.settings["linenumbers"].value) ? 8 : 0;
+		public static int TAB_SPACES => ((bool)Bolt.instance.settings["linenumbers"].value) ? 4 : 0;
 		public int Scroll = 0;
 		public Location cursor = new Location(0, 0);
 		public List<string> lines;
@@ -30,7 +30,19 @@ namespace bolt
 				//TODO Syntax Highlighting
 				GUI.ClearLine(i);
 				bool showLineNumbers = (bool)bolt.settings ["linenumbers"].value;
-				GUI.DrawString((showLineNumbers ? ((i + Scroll) + ":\t") : "") + lines[i + Scroll], new Location(0, i));
+				
+				if (showLineNumbers)
+				{
+					GUI.DrawString((i + Scroll) + "", new Location(0, i));
+					GUI.DrawString(lines[i + Scroll], new Location(TAB_SPACES, i));
+				}
+				else
+				{
+					GUI.DrawString(lines[i], new Location(0, i));
+				}
+				
+				
+				//GUI.DrawString((showLineNumbers ? ((i + Scroll) + ":\t") : "") + lines[i + Scroll], new Location(0, i));
 			}
 			for (; i < size.Height; i++)
 				GUI.ClearLine(i);
@@ -53,7 +65,17 @@ namespace bolt
 			bolt.CurrentlyUpdating = this;
 			GUI.ClearLine(line + Scroll);
 			bool showLineNumbers = (bool)bolt.settings ["linenumbers"].value;
-			GUI.DrawString((showLineNumbers ? ((line) + ":\t") : "") + lines[line], new Location(0, line + Scroll));
+			
+			if (showLineNumbers)
+			{
+				GUI.DrawString((line) + "", new Location(0, line + Scroll));
+				GUI.DrawString(lines[line], new Location(TAB_SPACES, line + Scroll));
+			}
+			else
+			{
+				GUI.DrawString(lines[line], new Location(0, line + Scroll));
+			}
+			
 			cursor.X += TAB_SPACES;
 			GUI.SetCursorPos (cursor);
 			cursor.X -= TAB_SPACES;
