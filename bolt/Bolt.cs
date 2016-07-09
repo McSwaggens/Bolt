@@ -50,7 +50,9 @@ namespace bolt
 			///Console.WriteLine("DIR: " + Directory.GetCurrentDirectory());
 			///Console.WriteLine(fileLocation);
 			///return;
-			
+
+			instance = this;
+
 			//TODO: check for NO_LOAD_CONFIG flag in command line args
 			settings = new Settings();
 			settings.LoadSettings (((OSInfo.OS_OSX || OSInfo.OS_WINDOWS) ? "/Users" : "/home") + $"/{Environment.UserName}/.boltrc");
@@ -58,8 +60,6 @@ namespace bolt
 				Logger.LogError ("Failed to load settings... Exiting.");
 				return;
 			}
-
-			instance = this;
 
 			Console.Clear ();
 
