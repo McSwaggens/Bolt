@@ -19,6 +19,6 @@ Bolt is a modular terminal text editor writen in C# for UNIX based systems
 - `Linux`: Yes
 - `Windows`: Yes
 
-<img src="http://i.imgur.com/wd16Ok8.png?1">
+<img src="http://i.imgur.com/CohWyN8.png">
 
 
